@@ -1,15 +1,19 @@
-var { graphql, buildSchema } = require('graphql');
-var schema =  require("./application/models/schema/schema");
-var getWhiteBoard = require("./application/models/api/getWhiteBoard");
 
+var { graphql, buildSchema } = require('graphql');
+import schema from "./schema/schema";
+import getWhiteBoard from "./api/getWhiteBoard";
+import getNotes from "./api/getNotes";
+import getDates from "./api/getDates";
 
 var rootValue = {
-  getWhiteBoard:getWhiteBoard
+  getWhiteBoard:getWhiteBoard,
+  getNotes:getNotes,
+  getDates:getDates
 };
 
-graphql(schema, `{
-    getWhiteBoard
+var ql = graphql(schema, `{
+    getDates
 }
-`, rootValue).then((response) => {
-  console.log(response);
-});
+`, rootValue);
+
+export default ql;

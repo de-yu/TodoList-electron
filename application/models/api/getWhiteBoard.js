@@ -1,9 +1,9 @@
 
 var fs = require("fs");
 
-var getWhiteBoard = function()
+export default function getWhiteBoard()
 {
-  return fs.readFileSync("./application/models/save/whiteboard.json" , "utf-8");
+  var file = fs.readFileSync("./application/models/save/whiteboard.json" , "utf-8");
+  var file_json = JSON.parse(file);
+  return file_json['whiteboard'];
 }
-
-module.exports = getWhiteBoard;

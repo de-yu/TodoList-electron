@@ -1,16 +1,7 @@
 var { buildSchema } = require('graphql');
 
 var schema = buildSchema(`
-  
- type Whiteboard
-  {
-    board:String
-  }
-  
- type Notes{
-  date:String
-  note:[Note]
-}
+
   
  type Note{
   status:String
@@ -25,4 +16,4 @@ type Query {
 }`
 );
 
-module.exports  = schema;
+export default schema;
