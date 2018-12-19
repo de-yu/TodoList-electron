@@ -1,19 +1,59 @@
 
 import React from 'react';
 import {Link} from 'react-router-dom';
+import styled from 'styled-components';
+
+const Nav = styled.div
+`
+    background:#545454;
+    height: 45px;
+    width: 100%;
+    display:flex;
+`;
+
+const Title = styled.div
+`
+    font-size: 1.5em;
+    text-align: center;
+    color: #fff;
+    width: 20%;
+    line-height:45px;
+    height:100%;
+`;
+
+const NavList = styled.ul
+`
+    width: 80%;
+    height:100%;
+    display:flex;
+    list-style-type:none;
+`;
+
+const NavItem = styled.li
+`
+    font-family:微軟正黑體;
+    color:#fff;
+    margin-left:30px;
+    font-size:0.9em;
+`;
 
 export default class NavBar extends React.Component
 {
   constructor(props) {
-    super()
+    super();
   }
   render() {
-    <div className="NavBar">
-      <ul>
-        <li><Link to="/Note">記事本</Link></li>
-        <li><Link to="/WaitThing">待完成</Link></li>
-        <li><Link to="/FinishThing">已完成</Link></li>
-      </ul>
-    </div>
+
+    return (
+            
+   <Nav>
+      <Title> Todo </Title>
+      <NavList>
+        <NavItem>記事本</NavItem>
+        <NavItem>待完成</NavItem>
+        <NavItem>已完成</NavItem>
+      </NavList>
+    </Nav>
+    )
   }
 }
