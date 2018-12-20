@@ -6,6 +6,7 @@ import styled from 'styled-components';
 const Nav = styled.div
 `
     background:#545454;
+    position:fixed;
     height: 45px;
     width: 100%;
     display:flex;
@@ -27,6 +28,7 @@ const NavList = styled.ul
     height:100%;
     display:flex;
     list-style-type:none;
+    margin-top:0;
 `;
 
 const NavItem = styled.li
