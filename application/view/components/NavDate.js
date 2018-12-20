@@ -9,7 +9,7 @@ const NavCalendar = styled.div
   position:fixed;
   top:45px;
   height:100%;
-  width:200px;
+  width:20%;
 `;
 
 const Month = styled.div
@@ -18,39 +18,48 @@ const Month = styled.div
   flex-wrap:warp;
   width:90%;
   margin:0 auto;
+  margin-bottom:15px;
 `;
 
 const MonthNum = styled.div
 `
   background:#555;
-  width:30%;
-  height:100px;
+  width:15%;
+  height:inherit;
   text-align: center;
   color:#fff;
-  border-right:1px solid #fff;
+  border-right:5px solid #fff;
+  font-size:2em;
+  display:flex;
+
+`;
+
+const Num = styled.span
+`
+ margin: auto;
 `;
 
 const MonthDays = styled.ul
 `
-  width:70%;
-  height:100px;
+  width:85%;
   display:flex;
-  flex-wrap:warp;
   list-style-type:none;
-  margin-top:0;
-  padding:0;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
 `;
 
 const Day = styled.li
 `
-  background:#123456;
-  width:30px;
-  height:30px;
-  text-align:center;
-  line-height:30px;
-  border-radius:50px;
-  margin-right:10px;
+  background:#6DB6F6;
+  width:50px;
+  height:50px;
   color:#fff;
+  text-align:center;
+  line-height:50px;
+  border-radius:50px;
+  margin:10px;
+  flex-wrap:wrap;
+  font-family:微軟正黑體;
 
 `;
 
@@ -65,7 +74,7 @@ export default class NavDate extends React.Component
     <NavCalendar>
       <Month>
         <MonthNum>
-        <span>11</span>
+            <Num>11</Num>
         </MonthNum>
         <MonthDays>
             <Day>1</Day>
@@ -75,12 +84,18 @@ export default class NavDate extends React.Component
       </Month>
       <Month>
         <MonthNum>
-        <span>11</span>
+        <Num>12</Num>
         </MonthNum>
         <MonthDays>
             <Day>1</Day>
             <Day>5</Day>
-            <Day>10</Day>
+            <Day>9</Day>
+            <Day>12</Day>
+            <Day>15</Day>
+            <Day>20</Day>
+           <Day>21</Day>
+            <Day>25</Day>
+            <Day>30</Day>
         </MonthDays>
       </Month>
     </NavCalendar>

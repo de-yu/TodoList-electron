@@ -36,6 +36,7 @@ const NavItem = styled.li
     font-family:微軟正黑體;
     color:#fff;
     margin-left:30px;
+    line-height:45px;
     font-size:0.9em;
 `;
 
