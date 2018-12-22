@@ -63,6 +63,12 @@ const Day = styled.li
 
 `;
 
+const DayLink = styled(Link)`
+  text-decoration:none;
+  color:#fff;
+`;
+
+
 export default class NavDate extends React.Component
 {
   constructor(props) {
@@ -77,9 +83,9 @@ export default class NavDate extends React.Component
             <Num>11</Num>
         </MonthNum>
         <MonthDays>
-            <Day>1</Day>
-            <Day>5</Day>
-            <Day>10</Day>
+        <Day><DayLink to="/DayThing/11/1">1</DayLink></Day>
+            <Day><DayLink to="/DayThing/11/1">5</DayLink></Day>
+            <Day><DayLink to="/DayThing/11/1">10</DayLink></Day>
         </MonthDays>
       </Month>
       <Month>

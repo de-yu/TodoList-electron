@@ -15,10 +15,11 @@ export default class MainRoute extends React.Component
   render() {
     return (
     <Switch>
-      <Route path="/" component={Note} />
+      <Route path="/Note" component={Note} />
       <Route path="/WaitThing" component={WaitThing} />
       <Route path="/FinishThing" component={FinishThing} />
-      <Route path="/DayThing" component={DayThing} />
+      <Route path="/DayThing/:Month/:Day" component={DayThing} />
+      <Route component={Note} />
     </Switch>
     );
   }

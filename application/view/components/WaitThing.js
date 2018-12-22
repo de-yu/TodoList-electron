@@ -7,6 +7,8 @@ export default class WaitThing extends React.Component
     super()
   }
   render() {
-
+    return(
+            <div id="WaitThing"></div>
+            );
   }
 }

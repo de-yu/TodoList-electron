@@ -7,6 +7,8 @@ export default class Note extends React.Component
     super()
   }
   render() {
-
+    return(
+            <div id="Note"></div>
+            );
   }
 }

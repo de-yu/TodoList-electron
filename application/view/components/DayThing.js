@@ -7,6 +7,8 @@ export default class DayThing extends React.Component
     super()
   }
   render() {
-
+    return(
+            <div id="DayThng"></div>
+            );
   }
 }

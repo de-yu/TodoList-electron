@@ -40,6 +40,11 @@ const NavItem = styled.li
     font-size:0.9em;
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration:none;
+  color:#fff;
+`;
+
 export default class NavBar extends React.Component
 {
   constructor(props) {
@@ -52,9 +57,9 @@ export default class NavBar extends React.Component
    <Nav>
       <Title> Todo </Title>
       <NavList>
-        <NavItem>記事本</NavItem>
-        <NavItem>待完成</NavItem>
-        <NavItem>已完成</NavItem>
+        <NavItem><StyledLink to="/Note">記事本</StyledLink></NavItem>
+        <NavItem><StyledLink to="/WaitThing">待完成</StyledLink></NavItem>
+        <NavItem><StyledLink to="/FinishThing">已完成</StyledLink></NavItem>
       </NavList>
     </Nav>
     )
