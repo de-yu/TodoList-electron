@@ -11,9 +11,7 @@ var rootValue = {
   getDates:getDates
 };
 
-var ql = graphql(schema, `{
-    getDates
-}
-`, rootValue);
-
-export default ql;
+export default function ql(query , values)
+{
+  return graphql(schema, query, rootValue , '' , values);
+};
