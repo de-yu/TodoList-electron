@@ -1,6 +1,8 @@
 
 import React from 'react';
 
+
+
 export default class Note extends React.Component
 {
   constructor(props) {
@@ -8,7 +10,9 @@ export default class Note extends React.Component
   }
   render() {
     return(
-            <div id="Note"></div>
+            <div id="Note">
+              
+            </div>
             );
   }
 }
