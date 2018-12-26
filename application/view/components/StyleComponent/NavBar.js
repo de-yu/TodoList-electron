@@ -9,6 +9,7 @@ export const Nav = styled.div
     height: 45px;
     width: 100%;
     display:flex;
+    z-index:2;
 `;
 
 export const Title = styled.div

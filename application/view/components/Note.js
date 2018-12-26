@@ -1,6 +1,7 @@
 
 import React from 'react';
-
+import {Main} from './StyleComponent/Main'
+import {NoteBoard , NoteBoardTop , NoteBoardEdit} from './StyleComponent/Note'
 
 
 export default class Note extends React.Component
@@ -10,9 +11,16 @@ export default class Note extends React.Component
   }
   render() {
     return(
-            <div id="Note">
+            <Main>
+              <NoteBoard>
+                <NoteBoardTop>
               
-            </div>
+                </NoteBoardTop>
+                <NoteBoardEdit>
+              
+                </NoteBoardEdit>
+              </NoteBoard>
+            </Main>
             );
   }
 }
