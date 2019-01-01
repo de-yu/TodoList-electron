@@ -3,17 +3,23 @@ var { buildSchema } = require('graphql');
 var schema = buildSchema(`
 
   
- type Note{
+ type DayThing{
   status:String
   content:String
 } 
   
 type Query {
-  getNotes(date: String): [Note]
-  getComingNotes(date: [String]): [Note]
+  getNotes(date: String): [DayThing]
+  getComingNotes(date: [String]): [DayThing]
   getDates:[String]
-  getWhiteBoard:String
-}`
+  getNote:String
+}
+
+type Mutation {
+ writeNote(text: String): String
+}
+
+`
 );
 
 export default schema;

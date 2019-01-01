@@ -21,10 +21,11 @@ export const NoteBoardTop = styled.div
 
 export const NoteBoardEdit = styled.textarea
 `
+  position:relative;
   border:0;
   padding:0;
+  margin-bottom:-3px;
   width:100%;
   height:100%;
   min-height:500px;
-  padding-bottom:3px;
 `;
