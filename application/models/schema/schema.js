@@ -9,14 +9,19 @@ var schema = buildSchema(`
 } 
   
 type Query {
-  getNotes(date: String): [DayThing]
+  getDayThing(date: String): [DayThing]
   getComingNotes(date: [String]): [DayThing]
   getDates:[String]
   getNote:String
 }
 
 type Mutation {
- writeNote(text: String): String
+  writeNote(text: String): String
+  newDate(date: String):String
+  delDate(date: String):String
+  newThing(thing: String): DayThing
+  delThing(id: ID!): DayThing
+  updateThing(id: ID! , thing:String):DayThing
 }
 
 `

@@ -1,16 +1,22 @@
 
 var { graphql, buildSchema } = require('graphql');
 import schema from "./schema/schema";
-import getWhiteBoard from "./api/getWhiteBoard";
-import {getNote , writeNote} from "./api/Note";
-import getDates from "./api/getDates";
+import Note from "./api/Note";
+import DayThing from "./api/DayThing";
+import Calendar from "./api/Calendar";
+
 
 var rootValue = {
-  getWhiteBoard:getWhiteBoard,
-  getNote:getNote,
-  getDates:getDates,
-  getNote:getNote,
-  writeNote:writeNote
+  getNote:Note.getNote,
+  //getDayThing:DayThing,
+  //getCalendar:Calendar,
+  
+  writeNote:Note.writeNote,
+  newDate:Calendar.newDate,
+  delDate:Calendar.delDate,
+  newThing:Note.newThing,
+  delThing:Note.delThing,
+  updateThing:Note.updateThing
 };
 
 export default function ql(query , values)
