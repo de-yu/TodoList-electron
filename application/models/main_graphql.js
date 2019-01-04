@@ -14,9 +14,9 @@ var rootValue = {
   writeNote:Note.writeNote,
   newDate:Calendar.newDate,
   delDate:Calendar.delDate,
-  newThing:Note.newThing,
-  delThing:Note.delThing,
-  updateThing:Note.updateThing
+  newThing:DayThing.newThing,
+  delThing:DayThing.delThing,
+  updateThing:DayThing.updateThing
 };
 
 export default function ql(query , values)

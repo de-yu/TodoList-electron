@@ -8,6 +8,7 @@ import NavBar from "./components/NavBar"
 import NavDate from "./components/NavDate"
 import MainRoute from "./components/MainRoute"
 
+
 const App = () => (
      <div>
        <NavBar />

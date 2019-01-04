@@ -1,5 +1,4 @@
-var fs = require("fs");
-
+var Datastore = require('nedb');  
 
 export default class Note
 {
@@ -7,21 +6,37 @@ export default class Note
   {
     
   }
+  
   static getNote() 
   {
-    var file = fs.readFileSync("./application/models/save/Note.json" , "utf-8");
-    var file_json = JSON.parse(file);
+    var Note = new Datastore({ filename: './application/models/save/Note.db', autoload: true });  
+    var doc = { note: ""};
+    return new Promise(function(resolve , reject){
 
-    return file_json['note'];
+          Note.findOne({}, function (err, docs) {
+            
+            if(docs===null)
+            {
+               var doc = { note: ""};
+               Note.insert(doc, function (err, newDocs) {
+                 resolve(doc['note']);
+               });
+            }
+            else{
+                resolve(docs['note']);
+            }
+          });
+    })
+
   }
   static writeNote({text})
   {
-      var data = {
-          'note':text
-      };
-      var fsdata = JSON.stringify(data);
-      fs.writeFileSync("./application/models/save/Note.json" , fsdata);
-
-      return data['note'];
+    var doc = { note: 'text'};
+     var Note = new Datastore({ filename: './application/models/save/Note.db', autoload: true });  
+    return new Promise(function(resolve , reject){
+          Note.insert(doc, function (err, newDocs) {
+            resolve(newDocs['note']);
+          });
+    })
   }
 }
