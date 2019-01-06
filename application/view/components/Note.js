@@ -7,37 +7,59 @@ import ql from "./../../../application/models/main_graphql"
 export default class Note extends React.Component
 {
   constructor(props) {
-    super()
+    super(props)
+    this.state = {
+        note:"",
+        id:""
+    };
   }
-    componentWillMount ()
+  async componentDidMount  ()
   {
-    ql(
+    var newNote = await ql(
+        `mutation newNote{
+            newNote
+         }
+        `
+     );
+      
+   var data = await ql(
      `{
-      getNote
+        getNote{
+              id
+              text
+          }
       }
-    `).then(function(data)      {
-            console.log(data);
-      })
-
+    `);
+      
+    console.log(data['data']["getNote"]['text']);
+    this.setState({
+    note:data['data']["getNote"]['text'] , 
+    id:data['data']["getNote"]['id']
+     });
+    this.refs.note.value = data['data']["getNote"]['text'];
+  }
+  save(event)
+  {
       ql(`
-        mutation writeNote($text: String) {
-            writeNote(text: $text) 
+        mutation updateNote($id:ID!, $text: String) {
+             updateNote(id:$id , text: $text) 
         }
         ` , {
-        'text':"233"
+        'id':this.refs.note.id,
+        'text':this.refs.note.value
         }).then(function(data)      {
             console.log(data);
       })
   }
   render() {
+  
     return(
             <Main>
               <NoteBoard>
                 <NoteBoardTop>
-              
+
                 </NoteBoardTop>
-                <NoteBoardEdit>
-              
+                <NoteBoardEdit ref="note" onChange={this.save.bind(this)} defaultValue={this.state.note} id={this.state.id}>
                 </NoteBoardEdit>
               </NoteBoard>
             </Main>

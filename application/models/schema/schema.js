@@ -2,7 +2,13 @@ var { buildSchema } = require('graphql');
 
 var schema = buildSchema(`
 
-  
+type Note
+{
+  id: ID
+  text: String
+}
+
+
  type DayThing{
   status:String
   content:String
@@ -12,11 +18,12 @@ type Query {
   getDayThing(date: String): [DayThing]
   getComingNotes(date: [String]): [DayThing]
   getDates:[String]
-  getNote:String
+  getNote:Note
 }
 
 type Mutation {
-  writeNote(text: String): String
+  newNote: String
+  updateNote(id:ID! , text: String): String
   newDate(date: String):String
   delDate(date: String):String
   newThing(thing: String): DayThing

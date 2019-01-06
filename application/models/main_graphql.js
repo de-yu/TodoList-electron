@@ -11,7 +11,8 @@ var rootValue = {
   //getDayThing:DayThing,
   //getCalendar:Calendar,
   
-  writeNote:Note.writeNote,
+  newNote:Note.newNote,
+  updateNote:Note.updateNote,
   newDate:Calendar.newDate,
   delDate:Calendar.delDate,
   newThing:DayThing.newThing,
