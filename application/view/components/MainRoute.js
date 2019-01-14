@@ -5,7 +5,7 @@ import {Switch , Route} from 'react-router-dom';
 import DayThing from './DayThing';
 import FinishThing from './FinishThing';
 import WaitThing from './WaitThing';
-import Note from './Note';
+import Note from '../containers/NoteContainer';
 
 export default class MainRoute extends React.Component
 {

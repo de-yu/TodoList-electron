@@ -1,13 +1,18 @@
 import ql from "./../../../application/models/main_graphql"
 
 
- const reducer = (state={note:"" , id:""}, action) => {
+ const reducer = (state = {note:"" , id:""}, action) => {
 
   switch (action.type) {
+      case 'new':
+      return {note:"" , id:""};
+  case 'get':
+      console.log(state);
+      return {note:state['note'] + "hi" , id:""};
     case 'update':
-      return {'note':"" , id:""};
+      return {note:state['note'] + "hi" , id:""};
     default:
-      return {'note':"" , id:""};
+      return {note:state['note'] + "hi" , id:""};
   }
 }
 

@@ -8,13 +8,13 @@ export default class Note extends React.Component
 {
   constructor(props) {
     super(props)
-    this.state = {
-        note:"",
-        id:""
-    };
+
+    console.log(props);
   }
   async componentDidMount  ()
   {
+    this.props.getNote();  
+    /*
     var newNote = await ql(
         `mutation newNote{
             newNote
@@ -36,10 +36,10 @@ export default class Note extends React.Component
     note:data['data']["getNote"]['text'] , 
     id:data['data']["getNote"]['id']
      });
-    this.refs.note.value = data['data']["getNote"]['text'];
+    this.refs.note.value = data['data']["getNote"]['text'];*/
   }
   save(event)
-  {
+  {/*
       ql(`
         mutation updateNote($id:ID!, $text: String) {
              updateNote(id:$id , text: $text) 
@@ -49,7 +49,7 @@ export default class Note extends React.Component
         'text':this.refs.note.value
         }).then(function(data)      {
             console.log(data);
-      })
+      })*/
   }
   render() {
   
@@ -59,7 +59,7 @@ export default class Note extends React.Component
                 <NoteBoardTop>
 
                 </NoteBoardTop>
-                <NoteBoardEdit ref="note" onChange={this.save.bind(this)} defaultValue={this.state.note} id={this.state.id}>
+                <NoteBoardEdit ref="note" onChange={this.save.bind(this)} defaultValue={this.props.note} id={this.props.id}>
                 </NoteBoardEdit>
               </NoteBoard>
             </Main>

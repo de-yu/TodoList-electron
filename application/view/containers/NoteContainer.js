@@ -1,16 +1,19 @@
 
 import React from 'react';
-import Note from '../component/Note';
-import {updateNote} from '../actions/Note'
+import Note from '../components/Note';
+import {newNote , getNote , updateNote} from '../actions/Note'
 import { connect } from 'react-redux';
 
+import reducer from "../reducers/NoteReducer"
 
-const mapStateToProps = state =>({note:state.text , id:state.id});
+const mapStateToProps = state =>({note:state.note , id:state.id});
 
 const mapDispatchToProps = (dispatch , props) => ({
+    getNote:function(){dispatch(getNote(props))},
     saveNote:function(){dispatch(updateNote(props))}
     }
 );
 
+var NewNote = connect(mapStateToProps ,mapDispatchToProps )(Note);
 
-export default connect(mapStateToProps ,mapDispatchToProps )(Note);
+export default NewNote;
