@@ -7,8 +7,8 @@ import ql from "./../../../application/models/main_graphql"
       case 'new':
       return {note:"" , id:""};
   case 'get':
-      console.log(state);
-      return {note:state['note'] + "hi" , id:""};
+      console.log(action.data);
+      return {note:action.data + "hi" , id:""};
     case 'update':
       return {note:state['note'] + "hi" , id:""};
     default:

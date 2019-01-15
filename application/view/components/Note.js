@@ -3,6 +3,8 @@ import React from 'react';
 import {Main} from './StyleComponent/Main'
 import {NoteBoard , NoteBoardTop , NoteBoardEdit} from './StyleComponent/Note'
 import ql from "./../../../application/models/main_graphql"
+import {fetchData} from '../actions/Note'
+
 
 export default class Note extends React.Component
 {
@@ -11,9 +13,9 @@ export default class Note extends React.Component
 
     console.log(props);
   }
-  async componentDidMount  ()
+  componentDidMount  ()
   {
-    this.props.getNote();  
+
     /*
     var newNote = await ql(
         `mutation newNote{
@@ -39,7 +41,12 @@ export default class Note extends React.Component
     this.refs.note.value = data['data']["getNote"]['text'];*/
   }
   save(event)
-  {/*
+  {
+
+   this.props.dispatch(fetchData(this.props.dispatch))
+   // this.props.dispatch(fetchData.pending());          // { type: 'FETCH_DATA_PENDING' }
+ //this.props.dispacth(fetchData.fulfilled(payload));
+      /*
       ql(`
         mutation updateNote($id:ID!, $text: String) {
              updateNote(id:$id , text: $text) 
