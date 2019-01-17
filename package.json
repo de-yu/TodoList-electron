@@ -29,14 +29,11 @@
         "react-router": "4.2.0",
         "react-router-dom": "4.2.2",
         "redux": "3.7.2",
-        "redux-promise-middleware": "^5.1.1",
-        "redux-promise-middleware-actions": "^2.1.0",
         "redux-thunk": "^2.3.0",
         "styled-components": "^4.1.3"
     },
     "scripts": {
         "electron": "electron main.js",
-        "package": "electron-packager . test --platform=win32 --arch=x64 --version=3.0.10 --overwrite",
-        "insta": "npm install --save redux-promise-middleware-actions redux-promise-middleware"
+        "package": "electron-packager . test --platform=win32 --arch=x64 --version=3.0.10 --overwrite"
     }
 }

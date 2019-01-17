@@ -15,50 +15,19 @@ export default class Note extends React.Component
   }
   componentDidMount  ()
   {
-
-    /*
-    var newNote = await ql(
-        `mutation newNote{
-            newNote
-         }
-        `
-     );
-      
-   var data = await ql(
-     `{
-        getNote{
-              id
-              text
-          }
-      }
-    `);
-      
-    console.log(data['data']["getNote"]['text']);
-    this.setState({
-    note:data['data']["getNote"]['text'] , 
-    id:data['data']["getNote"]['id']
-     });
-    this.refs.note.value = data['data']["getNote"]['text'];*/
+    this.props.newNote().then(function(){
+        console.log("already new");
+    }.bind(this))        
+    this.props.getNote().then(function(){
+        this.refs.note.value = this.props.note;
+    }.bind(this))
   }
   save(event)
   {
-
-   this.props.dispatch(get(this.props.dispatch)).then(function(){
-       console.log(this.props.note);
-   }.bind(this))
-   // this.props.dispatch(fetchData.pending());          // { type: 'FETCH_DATA_PENDING' }
- //this.props.dispacth(fetchData.fulfilled(payload));
-      /*
-      ql(`
-        mutation updateNote($id:ID!, $text: String) {
-             updateNote(id:$id , text: $text) 
-        }
-        ` , {
-        'id':this.refs.note.id,
-        'text':this.refs.note.value
-        }).then(function(data)      {
-            console.log(data);
-      })*/
+      this.props.setNote(this.refs.note.id , this.refs.note.value);
+      this.props.saveNote().then(function(){
+        console.log("already save");
+    }.bind(this))        
   }
   render() {
   
