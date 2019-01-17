@@ -1,4 +1,3 @@
-import { createAsyncAction } from 'redux-promise-middleware-actions';
 import ql from "./../../../application/models/main_graphql"
 
 const newNote = ()=>({
@@ -15,9 +14,10 @@ const updateNote = (updateNote) =>({
     updateNote
 })
 
- 
-const fetchData = createAsyncAction('FETCH_DATA', async (dispatch) => {
-   var data = await ql(
+
+ function get(dispatch) {
+     return async function(dispatch){
+           var data = await ql(
      `{
         getNote{
               id
@@ -26,6 +26,8 @@ const fetchData = createAsyncAction('FETCH_DATA', async (dispatch) => {
       }
     `);
   dispatch(getNote(data['data']["getNote"]['text']))
-});
+     }
 
-export {newNote, getNote , updateNote , fetchData}
+}
+
+export {newNote, getNote , updateNote , fetchData , get}

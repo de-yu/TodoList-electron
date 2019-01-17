@@ -3,7 +3,7 @@ import React from 'react';
 import {Main} from './StyleComponent/Main'
 import {NoteBoard , NoteBoardTop , NoteBoardEdit} from './StyleComponent/Note'
 import ql from "./../../../application/models/main_graphql"
-import {fetchData} from '../actions/Note'
+import {fetchData , get} from '../actions/Note'
 
 
 export default class Note extends React.Component
@@ -43,7 +43,9 @@ export default class Note extends React.Component
   save(event)
   {
 
-   this.props.dispatch(fetchData(this.props.dispatch))
+   this.props.dispatch(get(this.props.dispatch)).then(function(){
+       console.log(this.props.note);
+   }.bind(this))
    // this.props.dispatch(fetchData.pending());          // { type: 'FETCH_DATA_PENDING' }
  //this.props.dispacth(fetchData.fulfilled(payload));
       /*
