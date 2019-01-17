@@ -1,7 +1,7 @@
 
 import React from 'react';
 import Note from '../components/Note';
-import {newNote , getNote , updateNote , fetchData} from '../actions/Note'
+import {newNote , getNote , updateNote} from '../actions/Note'
 import { connect } from 'react-redux';
 
 import reducer from "../reducers/NoteReducer"

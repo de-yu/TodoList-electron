@@ -30,4 +30,4 @@ const updateNote = (updateNote) =>({
 
 }
 
-export {newNote, getNote , updateNote , fetchData , get}
+export {newNote, getNote , updateNote , get}

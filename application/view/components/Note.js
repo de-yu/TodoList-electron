@@ -3,7 +3,7 @@ import React from 'react';
 import {Main} from './StyleComponent/Main'
 import {NoteBoard , NoteBoardTop , NoteBoardEdit} from './StyleComponent/Note'
 import ql from "./../../../application/models/main_graphql"
-import {fetchData , get} from '../actions/Note'
+import {get} from '../actions/Note'
 
 
 export default class Note extends React.Component
