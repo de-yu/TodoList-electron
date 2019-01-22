@@ -2,16 +2,12 @@
 import React from 'react';
 import {Main} from './StyleComponent/Main'
 import {NoteBoard , NoteBoardTop , NoteBoardEdit} from './StyleComponent/Note'
-import ql from "./../../../application/models/main_graphql"
-import {get} from '../actions/Note'
 
 
 export default class Note extends React.Component
 {
   constructor(props) {
     super(props)
-
-    console.log(props);
   }
   componentDidMount  ()
   {
@@ -27,6 +23,7 @@ export default class Note extends React.Component
       this.props.setNote(this.refs.note.id , this.refs.note.value);
       this.props.saveNote().then(function(){
         console.log("already save");
+        
     }.bind(this))        
   }
   render() {
@@ -35,7 +32,6 @@ export default class Note extends React.Component
             <Main>
               <NoteBoard>
                 <NoteBoardTop>
-
                 </NoteBoardTop>
                 <NoteBoardEdit ref="note" onChange={this.save.bind(this)} defaultValue={this.props.note} id={this.props.id}>
                 </NoteBoardEdit>

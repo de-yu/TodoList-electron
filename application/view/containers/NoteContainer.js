@@ -19,7 +19,6 @@ const mapDispatchToProps = (dispatch , props) => ({
         return dispatch(saveNote())
     },
     setNote:function(id, note){ 
-        console.log(id , note);
         dispatch(setNote({
             note:note , id:id
         })) },
