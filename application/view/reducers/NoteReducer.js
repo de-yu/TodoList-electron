@@ -1,4 +1,3 @@
-import ql from "./../../../application/models/main_graphql"
 
 
  const reducer = (state = {note:"" , id:""}, action) => {

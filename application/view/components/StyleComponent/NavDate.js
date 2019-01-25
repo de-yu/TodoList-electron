@@ -10,6 +10,13 @@ export const NavCalendar = styled.div
   width:20%;
 `;
 
+export const AllMonth = styled.div
+`
+  overflow:scroll;
+  height:100%;
+`
+;
+
 export const Month = styled.div
 `
   display:flex;
@@ -64,4 +71,26 @@ export const Day = styled.li
 export const DayLink = styled(Link)`
   text-decoration:none;
   color:#fff;
+`;
+
+export const DateControl = styled.div
+`
+  display:flex;
+  width:100%;
+  margin-top:10px;
+  margin-bottom:10px;
+
+`;
+export const NewDateButton = styled.div
+`
+  width:50%;
+  text-align: center;
+  color:#fff;
+`;
+
+export const DelDateButton = styled.div
+`
+  width:50%;
+  text-align: center;
+color:#fff;
 `;

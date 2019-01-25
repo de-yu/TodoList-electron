@@ -1,16 +1,14 @@
 
-var fs = require("fs");
+var Datastore = require('nedb');  
 
 export default class DayThing
 {
   constructor(date) {
     this.date = date;
   }
-  getThing() {
-    var file = fs.readFileSync("./application/models/save/DayThing.json","utf-8");
-    var file_json = JSON.parse(file);
+  static getThing() {
+    var DayThing = new Datastore({ filename: './application/models/save/Note.db', autoload: true });  
 
-    return file_json[date];
   }
   static newThing(thing)
   {
@@ -20,7 +18,7 @@ export default class DayThing
 
   }
   static updateThing(id) {
-
+    
   }
   
 }

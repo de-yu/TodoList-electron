@@ -4,8 +4,6 @@ import Note from '../components/Note';
 import {setNote , newNote , getNote , saveNote}from '../actions/Note'
 import { connect } from 'react-redux';
 
-import reducer from "../reducers/NoteReducer"
-
 const mapStateToProps = state =>({note:state.note , id:state.id});
 
 const mapDispatchToProps = (dispatch , props) => ({

@@ -10,12 +10,13 @@ function newNote(dispatch)
 {
     return async function(dispatch)
     {
-        ql(
+        await ql(
            `mutation newNote{
                newNote
             }
            `
         );
+
         dispatch(setNote({
               note:"",
               id:""
@@ -45,7 +46,6 @@ function saveNote(dispatch , state)
 {
     return async function(dispatch , state)
     {
-        console.log(state());
         var data =  await ql(`
         mutation updateNote($id:ID!, $text: String) {
              updateNote(id:$id , text: $text) 
