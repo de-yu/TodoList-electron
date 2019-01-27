@@ -16,31 +16,50 @@ function getDate(){
             }
            `
         );
-
         
         dispatch(setDate(
               data,
           ));
     }
-  
 }
 
 
 function delDate(date)
 {
-  
+  return async function(dispatch  , state)
+  {
+      
+      var data =   await  ql(
+           `mutation delDate($date:String){
+               delDate(date:$date)
+            }
+           `
+         , 
+         {
+             date:date
+         });
+        
+        dispatch(setDate(data))
+  }
 }
 
 function newDate(date)
 {
   return async function(dispatch  , state)
   {
-         await  ql(
+      
+      var data =   await  ql(
            `mutation newDate($date:String){
                newDate(date:$date)
             }
            `
-        );
+         , 
+         {
+             date:date
+         });
+        
+        dispatch(setDate(data))
+
   }
 }
 

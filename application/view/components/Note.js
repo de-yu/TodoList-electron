@@ -8,11 +8,12 @@ export default class Note extends React.Component
 {
   constructor(props) {
     super(props)
+
   }
   componentDidMount  ()
   {
-    this.props.newNote().then(function(){
-        console.log("already new");
+    this.props.newNote().then(function(data){
+        console.log(data);
     }.bind(this))        
     this.props.getNote().then(function(){
         this.refs.note.value = this.props.note;
@@ -20,11 +21,9 @@ export default class Note extends React.Component
   }
   save(event)
   {
-      this.props.setNote(this.refs.note.id , this.refs.note.value);
-      this.props.saveNote().then(function(){
-        console.log("already save");
-        
-    }.bind(this))        
+      this.props.saveNote(this.refs.note.value).then (function(data){
+          console.log(data);
+      })
   }
   render() {
   

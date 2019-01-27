@@ -10,24 +10,22 @@ export default class NavDate extends React.Component
   }
   componentWillMount ()
   {
-    ql(
-     `{
-      getDates
-      }
-    `).then(function(data)      {
-            console.log(data);
-      })
 
 
   }
   newDate()
   {
-    
+      this.props.newDate("123").then(function(data){
+          console.log(data);
+      })
+
   }
   
   delDate()
   {
-    
+    this.props.delDate("123").then(function(data){
+          console.log(data);
+      })
   }
   render() {
       return(
@@ -35,10 +33,10 @@ export default class NavDate extends React.Component
     <NavCalendar>
       <DateControl>
         <NewDateButton onClick={ this.newDate.bind(this) } >
-        new
+        NEW
         </NewDateButton>
-        <DelDateButton>
-        del
+        <DelDateButton onClick={this.delDate.bind(this)}>
+        DEL
         </DelDateButton>
       </DateControl>
       <AllMonth>

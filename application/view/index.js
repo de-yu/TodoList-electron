@@ -4,15 +4,19 @@ import { BrowserRouter, Route , Link , Switch} from 'react-router-dom'
 import { matchPath } from 'react-router'
 import React from 'react';
 import ReactDOM from "react-dom";
-import {createStore , applyMiddleware} from 'redux';
+import {createStore , applyMiddleware , combineReducers } from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 
-import reducer from "./reducers/NoteReducer"
+import CalendarReducer from "./reducers/CalendarReducer"
+import NoteReducer from "./reducers/NoteReducer"
 import NavBar from "./components/NavBar"
-import NavDate from "./components/NavDate"
+import NavDate from "./containers/CalendarContainer"
 import MainRoute from "./components/MainRoute"
 
+var reducer = combineReducers({
+    Calendar: CalendarReducer 
+    ,Note:NoteReducer});
 
 const store = createStore(
   reducer,

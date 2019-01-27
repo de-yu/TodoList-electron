@@ -5,18 +5,18 @@ import {setDate , getDate , delDate , newDate}from '../actions/NavDate'
 import { connect } from 'react-redux';
 
 
-const mapStateToProps = state =>({date:state.date});
+const mapStateToProps = state =>({date:state.Calendar.date});
 
 
 const mapDispatchToProps = (dispatch , props) => ({
-    newDate:function(){
-        return dispatch(newDate())
+    newDate:function(date){
+        return dispatch(newDate(date))
     },    
     getDate:function(){
         return dispatch(getDate())
     },
-    delDate:function(){
-        return dispatch(delDate())
+    delDate:function(date){
+        return dispatch(delDate(date))
     },
     setDate:function(date){ 
         dispatch(setDate({
@@ -27,6 +27,6 @@ const mapDispatchToProps = (dispatch , props) => ({
 );
 
 
-var NavDate = connect(mapStateToProps ,mapDispatchToProps )(NavDate);
+var newNavDate = connect(mapStateToProps ,mapDispatchToProps )(NavDate);
 
-export default NavDate;
+export default newNavDate;

@@ -2,7 +2,7 @@ import ql from "./../../../application/models/main_graphql"
 
 
 const setNote = (data) =>({
-    type:"set", 
+    type:"setNote", 
     data:data
 })
 
@@ -42,23 +42,27 @@ function newNote(dispatch)
     }
 }
 
-function saveNote(dispatch , state)
+function saveNote(note , resolve)
 {
     return async function(dispatch , state)
     {
+
         var data =  await ql(`
         mutation updateNote($id:ID!, $text: String) {
              updateNote(id:$id , text: $text) 
         }
         ` , {
-        'id':state().id,
-        'text':state().note
+        'id':state().Note.id,
+        'text':note
         })
         
+        return "a"
+/*
         dispatch(setNote({
          note:data['data']["getNote"]['text'],
          id:data['data']["getNote"]['id']
-       }));
+       }));*/
+
     }
 }
 
