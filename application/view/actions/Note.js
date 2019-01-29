@@ -49,19 +49,17 @@ function saveNote(note , resolve)
 
         var data =  await ql(`
         mutation updateNote($id:ID!, $text: String) {
-             updateNote(id:$id , text: $text) 
+             updateNote(id:$id , text: $text) {
+                status
+                text
+              }
         }
         ` , {
         'id':state().Note.id,
         'text':note
         })
         
-        return "a"
-/*
-        dispatch(setNote({
-         note:data['data']["getNote"]['text'],
-         id:data['data']["getNote"]['id']
-       }));*/
+        return data["data"]["updateNote"];
 
     }
 }

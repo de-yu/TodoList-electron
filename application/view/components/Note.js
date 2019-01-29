@@ -22,7 +22,12 @@ export default class Note extends React.Component
   save(event)
   {
       this.props.saveNote(this.refs.note.value).then (function(data){
-          console.log(data);
+                  console.log(data);
+        this.props.setNote({
+         note:data['text'],
+         id:data['id']
+       })
+
       })
   }
   render() {

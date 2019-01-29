@@ -13,7 +13,12 @@ type Note
   status:String
   content:String
 } 
-  
+
+type DmlStatus{
+  status:String
+  text:String
+}
+
 type Query {
   getDayThing(date: String): [DayThing]
   getComingNotes(date: [String]): [DayThing]
@@ -23,7 +28,7 @@ type Query {
 
 type Mutation {
   newNote: String
-  updateNote(id:ID! , text: String): String
+  updateNote(id:ID! , text: String): DmlStatus
   newDate(date: String):String
   delDate(date: String):String
   newThing(thing: String): DayThing

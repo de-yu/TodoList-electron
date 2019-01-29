@@ -15,27 +15,41 @@ export default class NavDate extends React.Component
   }
   newDate()
   {
+    window.prompt("sometext","defaultText");
       this.props.newDate("123").then(function(data){
           console.log(data);
       })
 
   }
-  
-  delDate()
+ allowDrop(ev)
   {
-    this.props.delDate("123").then(function(data){
-          console.log(data);
-      })
+    console.log("allow");
+          ev.preventDefault();
+  }
+
+  drag(ev)
+  {
+    console.log("drag");
+          ev.dataTransfer.setData("Text",ev.target.id);
+  }
+
+  drop(ev)
+  {
+    
+          ev.preventDefault();
+          var data=ev.dataTransfer.getData("Text");
+              console.log(data);
+          ev.target.appendChild(document.getElementById(data));
   }
   render() {
       return(
 
-    <NavCalendar>
-      <DateControl>
+    <NavCalendar >
+      <DateControl >
         <NewDateButton onClick={ this.newDate.bind(this) } >
         NEW
         </NewDateButton>
-        <DelDateButton onClick={this.delDate.bind(this)}>
+        <DelDateButton  onDrop={this.drop.bind(this)} onDragOver={this.allowDrop.bind(this)}>
         DEL
         </DelDateButton>
       </DateControl>
@@ -45,7 +59,7 @@ export default class NavDate extends React.Component
             <Num>11</Num>
         </MonthNum>
         <MonthDays>
-        <Day><DayLink to="/DayThing/11/1">1</DayLink></Day>
+        <Day  id = "a" draggable="true" onDragStart={this.drag.bind(this)}><DayLink to="/DayThing/11/1">1</DayLink></Day>
             <Day><DayLink to="/DayThing/11/1">5</DayLink></Day>
             <Day><DayLink to="/DayThing/11/1">10</DayLink></Day>
         </MonthDays>

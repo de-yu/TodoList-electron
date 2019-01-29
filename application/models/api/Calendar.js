@@ -32,7 +32,7 @@ export default class Calendar
   {
     var Calendar = new Datastore({filename:'./application/models/save/DayThing.db',autoload:true});
     var doc = {date:date,thing:""};
-    console.log(doc);
+
     return new Promise(function(resolve,reject) {
       Calendar.findOne({date:date},function(err,docs) {
 
