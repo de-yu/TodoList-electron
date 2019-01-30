@@ -8,17 +8,14 @@ export default class NavDate extends React.Component
   constructor(props) {
     super(props)
   }
-  componentWillMount ()
+  async componentDidMount ()
   {
-
-
+    var data = await this.props.getDate();
+    console.log(data);
+   
   }
   newDate()
   {
-    window.prompt("sometext","defaultText");
-      this.props.newDate("123").then(function(data){
-          console.log(data);
-      })
 
   }
  allowDrop(ev)

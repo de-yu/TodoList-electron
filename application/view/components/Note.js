@@ -10,14 +10,12 @@ export default class Note extends React.Component
     super(props)
 
   }
-  componentDidMount  ()
+   async componentDidMount  ()
   {
-    this.props.newNote().then(function(data){
-        console.log(data);
-    }.bind(this))        
-    this.props.getNote().then(function(){
-        this.refs.note.value = this.props.note;
-    }.bind(this))
+    var data = await this.props.newNote();
+    var note = await this.props.getNote();
+   
+    this.refs.note.value = this.props.note;
   }
   save(event)
   {

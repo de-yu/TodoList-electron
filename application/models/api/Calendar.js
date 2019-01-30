@@ -1,5 +1,5 @@
 var Datastore = require('nedb');
-
+var _ = require('lodash');
 
 export default class Calendar
 {
@@ -11,8 +11,13 @@ export default class Calendar
     var Calendar = new Datastore({filename:'./application/models/save/DayThing.db',autoload:true});
 
     return new Promise(function(resolve,reject) {
-      Calendar.find({},function(err,docs) {
-        resolve(docs);
+      Calendar.find({}).sort({date:1}).exec(function(err,docs) {
+        
+        var data = [];
+        _.forEach(docs , function(d){
+          data.push(d['date'])
+        })
+        resolve(data);
       })
     });
     

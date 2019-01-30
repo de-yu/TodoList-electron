@@ -9,7 +9,7 @@ import Calendar from "./api/Calendar";
 var rootValue = {
   getNote:Note.getNote,
   //getDayThing:DayThing,
-  //getCalendar:Calendar,
+  getCalendar:Calendar.getCalendar,
   
   newNote:Note.newNote,
   updateNote:Note.updateNote,

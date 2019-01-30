@@ -12,14 +12,16 @@ function getDate(){
     {
       var data = await  ql(
            `{
-              getDate
+              getCalendar
             }
            `
         );
         
+        return data;
+        /*
         dispatch(setDate(
               data,
-          ));
+          ));*/
     }
 }
 
