@@ -9,11 +9,21 @@ export const NavCalendar = styled.div
   height:100%;
   width:20%;
 `;
-
-export const AllMonth = styled.div
+export const Year = styled.div
 `
   overflow:scroll;
   height:100%;
+`;
+
+export const YearNum = styled.div
+`
+  color:#fff;
+  font-size:3em;
+`;
+
+export const AllMonth = styled.div
+`
+
 `
 ;
 

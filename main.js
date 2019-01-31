@@ -4,7 +4,7 @@ let mainWindow;
 
 app.on('ready', () => {
 
-    mainWindow = new BrowserWindow();
+    mainWindow = new BrowserWindow({ width: 1200, height: 600 });
 
     // 讀取主要的html
     mainWindow.loadURL( path.join('file://', __dirname, 'index.html'));

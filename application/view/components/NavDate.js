@@ -1,6 +1,6 @@
 
 import React from 'react';
-import {NavCalendar , Month ,AllMonth, MonthNum , Num , MonthDays , Day , DayLink ,DateControl, NewDateButton , DelDateButton} from './StyleComponent/NavDate'
+import {NavCalendar , Year , YearNum , Month ,AllMonth, MonthNum , Num , MonthDays , Day , DayLink ,DateControl, NewDateButton , DelDateButton} from './StyleComponent/NavDate'
 import ql from "./../../../application/models/main_graphql"
 
 export default class NavDate extends React.Component
@@ -50,6 +50,10 @@ export default class NavDate extends React.Component
         DEL
         </DelDateButton>
       </DateControl>
+      <Year>
+      <YearNum>
+        2018
+      </YearNum>
       <AllMonth>
       <Month>
         <MonthNum>
@@ -78,6 +82,8 @@ export default class NavDate extends React.Component
         </MonthDays>
       </Month>
       </AllMonth>
+     
+      </Year>
     </NavCalendar>
     )
   }
