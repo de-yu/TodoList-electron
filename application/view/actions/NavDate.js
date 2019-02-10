@@ -1,70 +1,87 @@
 import ql from "./../../../application/models/main_graphql"
 
-const setDate = (data) => ({
-  type:'setDate',
-  data:data
-})
+        const setDate = (data) => ({
+        type: 'setDate',
+        data: data
+    })
 
 
-function getDate(){
-  
-      return async function(dispatch)
+function getDate ()
+{
+
+    return async function (dispatch)
     {
-      var data = await  ql(
-           `{
+        var data = await  ql(
+                `{
               getCalendar
+                }
+               `
+       );
+
+        var newdata = {};
+
+        _.forEach(data['data']['getCalendar'], function (value)
+        {
+            var date = value.split("-");
+
+            if(!newdata.hasOwnProperty(date[0])){
+                newdata[date[0]] = {};
             }
-           `
-        );
-        
-        return data;
+            if(!newdata[date[0]].hasOwnProperty(date[1])){
+                newdata[date[0]][date[1]] = [];
+            }
+            newdata[date[0]][date[1]].push(date[2]);
+
+        });
+
+        return newdata;
         /*
-        dispatch(setDate(
-              data,
-          ));*/
+         dispatch(setDate(
+         data,
+         ));*/
     }
 }
 
 
-function delDate(date)
+function delDate (date)
 {
-  return async function(dispatch  , state)
-  {
-      
-      var data =   await  ql(
-           `mutation delDate($date:String){
+    return async function (dispatch, state)
+    {
+
+        var data = await  ql(
+                `mutation delDate($date:String){
                delDate(date:$date)
             }
            `
-         , 
-         {
-             date:date
-         });
-        
+                ,
+                {
+                    date: date
+                });
+
         dispatch(setDate(data))
-  }
+    }
 }
 
-function newDate(date)
+function newDate (date)
 {
-  return async function(dispatch  , state)
-  {
-      
-      var data =   await  ql(
-           `mutation newDate($date:String){
+    return async function (dispatch, state)
+    {
+
+        var data = await  ql(
+                `mutation newDate($date:String){
                newDate(date:$date)
             }
            `
-         , 
-         {
-             date:date
-         });
-        
+                ,
+                {
+                    date: date
+                });
+
         dispatch(setDate(data))
 
-  }
+    }
 }
 
 
 
-export {setDate , getDate , delDate , newDate}
+export {setDate, getDate, delDate, newDate}

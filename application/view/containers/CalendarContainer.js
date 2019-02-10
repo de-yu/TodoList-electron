@@ -18,10 +18,8 @@ const mapDispatchToProps = (dispatch , props) => ({
     delDate:function(date){
         return dispatch(delDate(date))
     },
-    setDate:function(date){ 
-        dispatch(setDate({
-            date:date 
-        })) },
+    setDate:function(data){ 
+        dispatch(setDate(data)) },
     dispatch:dispatch
     }
 );

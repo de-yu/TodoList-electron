@@ -1,6 +1,8 @@
 
+/* global _ */
+
 import React from 'react';
-import {NavCalendar , Year , YearNum , Month ,AllMonth, MonthNum , Num , MonthDays , Day , DayLink ,DateControl, NewDateButton , DelDateButton} from './StyleComponent/NavDate'
+import {NavCalendar , Calendar, Year , YearNum , Month ,AllMonth, MonthNum , Num , MonthDays , Day , DayLink ,DateControl, DateInput , NewDateButton , DelDateButton} from './StyleComponent/NavDate'
 import ql from "./../../../application/models/main_graphql"
 
 export default class NavDate extends React.Component
@@ -10,13 +12,14 @@ export default class NavDate extends React.Component
   }
   async componentDidMount ()
   {
-    var data = await this.props.getDate();
-    console.log(data);
+    var date = await this.props.getDate();
+    
+    this.props.setDate(date);
    
   }
   newDate()
   {
-
+      console.log(this.refs.dateInput.value);
   }
  allowDrop(ev)
   {
@@ -39,10 +42,33 @@ export default class NavDate extends React.Component
           ev.target.appendChild(document.getElementById(data));
   }
   render() {
+      
+  var cal = [];
+  
+  if(this.props.date!==null)
+  {
+        _.forEach(this.props.date , function(value_1 , key_1){
+            var months = [];
+            
+            _.forEach(value_1 , function(value_2 , key_2){
+   
+                var days = []
+                _.forEach(value_2 , function(value_3){
+                     days.push(<Day key={value_3}><DayLink to={"/DayThing/"+[key_1,key_2,value_3].join("/")}>{value_3}</DayLink></Day>)
+                }.bind(this))
+                months.push(<Month key={key_2}><MonthNum>{key_2}</MonthNum><MonthDays>{days}</MonthDays></Month>)        
+        
+            }.bind(this))
+            cal.push(<Year key={key_1}><YearNum>{key_1}</YearNum><AllMonth>{months}</AllMonth></Year>)
+        
+            })
+        }
+
       return(
 
     <NavCalendar >
       <DateControl >
+      <DateInput ref="dateInput" type="date" />
         <NewDateButton onClick={ this.newDate.bind(this) } >
         NEW
         </NewDateButton>
@@ -50,40 +76,9 @@ export default class NavDate extends React.Component
         DEL
         </DelDateButton>
       </DateControl>
-      <Year>
-      <YearNum>
-        2018
-      </YearNum>
-      <AllMonth>
-      <Month>
-        <MonthNum>
-            <Num>11</Num>
-        </MonthNum>
-        <MonthDays>
-        <Day  id = "a" draggable="true" onDragStart={this.drag.bind(this)}><DayLink to="/DayThing/11/1">1</DayLink></Day>
-            <Day><DayLink to="/DayThing/11/1">5</DayLink></Day>
-            <Day><DayLink to="/DayThing/11/1">10</DayLink></Day>
-        </MonthDays>
-      </Month>
-      <Month>
-        <MonthNum>
-        <Num>12</Num>
-        </MonthNum>
-        <MonthDays>
-            <Day>1</Day>
-            <Day>5</Day>
-            <Day>9</Day>
-            <Day>12</Day>
-            <Day>15</Day>
-            <Day>20</Day>
-           <Day>21</Day>
-            <Day>25</Day>
-            <Day>30</Day>
-        </MonthDays>
-      </Month>
-      </AllMonth>
-     
-      </Year>
+      <Calendar>
+      {cal}
+      </Calendar>
     </NavCalendar>
     )
   }

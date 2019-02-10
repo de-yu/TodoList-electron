@@ -1,12 +1,12 @@
 
 
- const reducer = (state = {date:[""]}, action) => {
+ const reducer = (state = {date:{}}, action) => {
 
   switch (action.type) {
      case 'setDate':
-      return {note:action.data['date']};
+      return {date:action.data};
     default:
-      return {note:state['date']};
+      return {date:state['date']};
   }
 }
 

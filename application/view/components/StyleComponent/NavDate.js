@@ -9,10 +9,14 @@ export const NavCalendar = styled.div
   height:100%;
   width:20%;
 `;
+export const Calendar = styled.div
+`
+  overflow-y:scroll;
+`
+
 export const Year = styled.div
 `
-  overflow:scroll;
-  height:100%;
+
 `;
 
 export const YearNum = styled.div
@@ -86,21 +90,30 @@ export const DayLink = styled(Link)`
 export const DateControl = styled.div
 `
   display:flex;
+ -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
   width:100%;
   margin-top:10px;
   margin-bottom:10px;
+  
 
 `;
+
+export const DateInput = styled.input
+`
+    width:73%;
+`;
+
 export const NewDateButton = styled.div
 `
-  width:50%;
+  width:25%;
   text-align: center;
   color:#fff;
 `;
 
 export const DelDateButton = styled.div
 `
-  width:50%;
+  width:100%;
   text-align: center;
 color:#fff;
 `;

@@ -2,6 +2,7 @@ var { buildSchema } = require('graphql');
 
 var schema = buildSchema(`
 
+
 type Note
 {
   id: ID
