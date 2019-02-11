@@ -1,5 +1,7 @@
 
 import React from 'react';
+import {Main} from './StyleComponent/Main'
+
 
 export default class DayThing extends React.Component
 {
@@ -9,7 +11,9 @@ export default class DayThing extends React.Component
   }
   render() {
     return(
-            <div id="DayThng"></div>
+            <Main>
+                
+            </Main>
             );
   }
 }

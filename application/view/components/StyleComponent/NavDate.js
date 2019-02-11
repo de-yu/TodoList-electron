@@ -11,7 +11,12 @@ export const NavCalendar = styled.div
 `;
 export const Calendar = styled.div
 `
+  overflow-y:hidden;
+  height:100%;
+&:hover {
   overflow-y:scroll;
+
+  }
 `
 
 export const Year = styled.div
@@ -106,7 +111,7 @@ export const DateInput = styled.input
 
 export const NewDateButton = styled.div
 `
-  width:25%;
+  width:22%;
   text-align: center;
   color:#fff;
 `;
