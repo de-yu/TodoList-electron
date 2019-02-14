@@ -27,9 +27,7 @@ export default class Calendar
         });
 
     }
-    static delDate (
-    {date})
-    {
+    static delDate ({date}){
         var Calendar = new Datastore({filename: './application/models/save/DayThing.db', autoload: true});
 
         return new Promise(function (resolve, reject)
@@ -41,8 +39,7 @@ export default class Calendar
         });
 
     }
-    static newDate (
-    {date})
+    static newDate ({date})
     {
         var Calendar = new Datastore({filename: './application/models/save/DayThing.db', autoload: true});
         var doc = {date: date, thing: ""};
