@@ -15,16 +15,19 @@ export default class DayThing
      var thingDoc = {text: "" , id:""}
      
      return new Promise(function(resolve , reject){
-            thing.count({}, function (err, count) {
-            thingDoc['id'] = count;
+            thing.find({}, function (err, docs) {
+                var maxid = 0;
+                _.forEach(docs , function(value){
+                    maxid = Math.max(maxid , value._id)
+                })
 
-            thing.insert(thingDoc , function(err , newDocs){
-              resolve(newDocs);
-            })
+                thingDoc['id'] = maxid;
+
+                thing.insert(thingDoc , function(err , newDocs){
+                  resolve(newDocs);
+                })
          });
-     
      })
-
   }
   static delThing({id}) {
      var thing = new Datastore({ filename: './application/models/save/Thing.db', autoload: true });
@@ -36,8 +39,13 @@ export default class DayThing
      })
 
   }
-  static updateThing(id) {
-    
+  static updateThing({id , text}) {
+         var thing = new Datastore({ filename: './application/models/save/Thing.db', autoload: true });
+         
+         return new Promise(function(resolve , reject){
+              thing.update({_id : id} , {$set :{ thing: text}} , {} , function(err , numReplace){
+                resolve(numReplace);  
+              })
+         })
   }
-  
 }

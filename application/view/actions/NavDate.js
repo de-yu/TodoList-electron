@@ -1,49 +1,38 @@
 import ql from "./../../../application/models/main_graphql"
 
-        const setDate = (data) => ({
-        type: 'setDate',
-        data: data
-    })
+const setDate = (data) => ({
+    type: 'setDate',
+    data: data
+});
+
+const delDate = (date) => ({
+    type:'delDate',
+    data:date
+})
+
+const newDate = (date) => ({
+    type:'newDate',
+    data:date
+})
 
 
-function getDate ()
+function getDateAsync ()
 {
 
     return async function (dispatch)
     {
         var data = await  ql(
-                `{
-              getCalendar
-                }
-               `
+            `{
+          getCalendar
+            }
+           `
        );
-
-        var newdata = {};
-
-        _.forEach(data['data']['getCalendar'], function (value)
-        {
-            var date = value.split("-");
-
-            if(!newdata.hasOwnProperty(date[0])){
-                newdata[date[0]] = {};
-            }
-            if(!newdata[date[0]].hasOwnProperty(date[1])){
-                newdata[date[0]][date[1]] = [];
-            }
-            newdata[date[0]][date[1]].push(date[2]);
-
-        });
-
-        return newdata;
-        /*
-         dispatch(setDate(
-         data,
-         ));*/
+        return data['data']['getCalendar'];
     }
 }
 
 
-function delDate (date)
+function delDateAsync (date)
 {
     return async function (dispatch, state)
     {
@@ -52,17 +41,15 @@ function delDate (date)
                 `mutation delDate($date:String){
                delDate(date:$date)
             }
-           `
-                ,
+           `,
                 {
                     date: date
                 });
-
-        dispatch(setDate(data))
+        return data;
     }
 }
 
-function newDate (date)
+function newDateAsync (date)
 {
     return async function (dispatch, state)
     {
@@ -77,11 +64,10 @@ function newDate (date)
                     date: date
                 });
 
-        dispatch(setDate(data))
-
+        return data
     }
 }
 
 
 
-export {setDate, getDate, delDate, newDate}
+export {setDate,delDate , newDate, getDateAsync, delDateAsync, newDateAsync}
