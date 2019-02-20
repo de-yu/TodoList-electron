@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {Switch , Route} from 'react-router-dom';
-import DayThing from './DayThing';
+import DayThing from '../containers/DayThing';
 import FinishThing from './FinishThing';
 import WaitThing from './WaitThing';
 import Note from '../containers/NoteContainer';
@@ -15,11 +15,11 @@ export default class MainRoute extends React.Component
   render() {
     return (
     <Switch>
-      <Route path="/Note" component={Note} />
+      <Route path="/Note" component={DayThing} />
       <Route path="/WaitThing" component={WaitThing} />
       <Route path="/FinishThing" component={FinishThing} />
-      <Route path="/DayThing/:Month/:Day" component={DayThing} />
-      <Route component={Note} />
+      <Route path="/DayThing/:Month/:Day" component={Note} />
+      <Route component={DayThing} />
     </Switch>
     );
   }

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import {Main} from './StyleComponent/Main'
-import {DayThingBoard , DayThingBoardTop, DayThingAdd , DayThingDel , DayThingBoardEdit} from './StyleComponent/DayThing'
+import {DayThingBoard , DayThingBoardTop, DayThingAdd , DayThingDel , DayThingBoardEdit , DayThingItem , DayThingIsFinish , DayThingText} from './StyleComponent/DayThing'
 
 export default class DayThing extends React.Component
 {
@@ -50,6 +50,11 @@ export default class DayThing extends React.Component
                          </DayThingDel>
                       </DayThingBoardTop>
                       <DayThingBoardEdit>
+                        <DayThingItem>
+                            <DayThingIsFinish type="checkbox" />
+                            <DayThingText  contentEditable="true">              
+                            </DayThingText>
+                        </DayThingItem>
                       </DayThingBoardEdit>
                   </DayThingBoard>
               </Main>

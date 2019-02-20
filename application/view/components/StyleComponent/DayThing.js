@@ -23,15 +23,17 @@ export const DayThingAdd = styled.div
 `
 width:50%;
 text-align: center;
+color:#fff;
 `;
 
 export const DayThingDel = styled.div
 `
 width:50%;
 text-align: center;
+color:#fff;
 `;
 
-export const DayThingBoardEdit = styled.div
+export const DayThingBoardEdit = styled.ul
 `
   position:relative;
   width:100%;
@@ -39,3 +41,21 @@ export const DayThingBoardEdit = styled.div
   min-height:500px;
 `;
 
+export const DayThingItem = styled.li
+`
+    width:100%;
+    border-bottom:1px solid #aaa;
+    display:flex;
+`;
+
+export const DayThingIsFinish = styled.input
+`
+`;
+
+export const DayThingText = styled.p
+`
+    width:90%;
+    min-height:16px;
+    border:1px solid #aaa;
+    outline:0;
+`;
