@@ -49,12 +49,21 @@ export default class DayThing extends React.Component
                             DEL
                          </DayThingDel>
                       </DayThingBoardTop>
+
                       <DayThingBoardEdit>
-                        <DayThingItem>
-                            <DayThingIsFinish type="checkbox" />
-                            <DayThingText  contentEditable="true">              
-                            </DayThingText>
-                        </DayThingItem>
+                      {
+                        this.props.data.map(function(item , index){
+                          
+                          return (
+                             <DayThingItem key={index}>
+                              <DayThingIsFinish type="checkbox" />
+                              <DayThingText  contentEditable="true" suppressContentEditableWarning="true">      
+                                {item.text}
+                              </DayThingText>
+                            </DayThingItem>
+                             )
+                          })
+                      }
                       </DayThingBoardEdit>
                   </DayThingBoard>
               </Main>
