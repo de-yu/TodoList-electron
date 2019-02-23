@@ -10,13 +10,17 @@ import thunk from 'redux-thunk';
 
 import CalendarReducer from "./reducers/CalendarReducer"
 import NoteReducer from "./reducers/NoteReducer"
+import DayThingReducer from "./reducers/DayThingReducer"
+
 import NavBar from "./components/NavBar"
 import NavDate from "./containers/CalendarContainer"
 import MainRoute from "./components/MainRoute"
 
 var reducer = combineReducers({
     Calendar: CalendarReducer 
-    ,Note:NoteReducer});
+    ,Note:NoteReducer
+    ,DayThing:DayThingReducer
+    });
 
 const store = createStore(
   reducer,

@@ -17,6 +17,7 @@ export default class DayThing extends React.Component
     {
         
     }
+    
     allowDrop(ev)
      {
        console.log("allow");
@@ -52,12 +53,12 @@ export default class DayThing extends React.Component
 
                       <DayThingBoardEdit>
                       {
+ 
                         this.props.data.map(function(item , index){
-                          
                           return (
                              <DayThingItem key={index}>
                               <DayThingIsFinish type="checkbox" />
-                              <DayThingText  contentEditable="true" suppressContentEditableWarning="true">      
+                              <DayThingText contentEditable="true" suppressContentEditableWarning="true">      
                                 {item.text}
                               </DayThingText>
                             </DayThingItem>

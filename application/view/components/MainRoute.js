@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {Switch , Route} from 'react-router-dom';
-import DayThing from '../containers/DayThing';
+import DayThing from '../containers/DayThingContainer';
 import FinishThing from './FinishThing';
 import WaitThing from './WaitThing';
 import Note from '../containers/NoteContainer';
