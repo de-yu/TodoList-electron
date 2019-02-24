@@ -12,7 +12,7 @@ export default class DayThing
   {
     
      var thing = new Datastore({ filename: './application/models/save/Thing.db', autoload: true });
-     var thingDoc = {text: "" , id:""}
+     var thingDoc = {isFinish:false , thing: "" , _id:""}
      
      return new Promise(function(resolve , reject){
             thing.find({}, function (err, docs) {
@@ -21,7 +21,7 @@ export default class DayThing
                     maxid = Math.max(maxid , value._id)
                 })
 
-                thingDoc['id'] = maxid;
+                thingDoc['_id'] = maxid +1 ;
 
                 thing.insert(thingDoc , function(err , newDocs){
                   resolve(newDocs);

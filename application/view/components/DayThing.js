@@ -8,16 +8,29 @@ export default class DayThing extends React.Component
   constructor(props) {
     super(props)
     console.log(props);
-    }
+    }/*
     async componentDidMount ()
     {
         console.log(this.props.match.params)
-    }
+    }*/
     addThing()
     {
-        
+        this.props.addDayThingAsync().then(function (newdoc){
+            console.log(newdoc)
+            this.props.addDayThing();
+        }.bind(this))
+    }
+    focusEnter(event)
+    {
+        console.log(event);
+        console.log("a");
     }
     
+    componentDidUpdate()
+    {
+        var focusElement = "a".concat(this.props.data.length-1);
+        this.refs[focusElement].focus();
+    }
     allowDrop(ev)
      {
        console.log("allow");
@@ -55,15 +68,16 @@ export default class DayThing extends React.Component
                       {
  
                         this.props.data.map(function(item , index){
+
                           return (
-                             <DayThingItem key={index}>
-                              <DayThingIsFinish type="checkbox" />
-                              <DayThingText contentEditable="true" suppressContentEditableWarning="true">      
+                             <DayThingItem key={index} draggable="true">
+                              <DayThingIsFinish type="checkbox" defaultChecked={item.isFinish}/>
+                              <DayThingText ref={"a" + index} contentEditable="true" suppressContentEditableWarning="true" onBlur={this.focusEnter.bind(this)}>      
                                 {item.text}
                               </DayThingText>
                             </DayThingItem>
                              )
-                          })
+                          }.bind(this))
                       }
                       </DayThingBoardEdit>
                   </DayThingBoard>

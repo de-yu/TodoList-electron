@@ -11,8 +11,9 @@ type Note
 
 
  type DayThing{
-  status:String
-  content:String
+  isFinish:Boolean
+  thing:String
+  _id:String
 } 
 
 type DmlStatus{

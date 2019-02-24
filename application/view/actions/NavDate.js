@@ -58,12 +58,10 @@ function newDateAsync (date)
                 `mutation newDate($date:String){
                newDate(date:$date)
             }
-           `
-                ,
-                {
-                    date: date
-                });
-
+           `,
+            {
+                date: date
+            });
         return data
     }
 }
