@@ -16,7 +16,6 @@ export default class DayThing extends React.Component
     addThing()
     {
         this.props.addDayThingAsync().then(function (newdoc){
-            console.log(newdoc)
             this.props.addDayThing();
         }.bind(this))
     }

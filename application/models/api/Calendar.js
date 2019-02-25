@@ -60,7 +60,16 @@ export default class Calendar
                 }
             });
         })
-
-
+    }
+    static updateDayThing({date , thingId})
+    {
+        var Calendar = new Datastore({filename: './application/models/save/DayThing.db', autoload: true});
+        
+        return new Promise(function(resolve , reject){
+            Calendar.update({date:date} , {$set: thingId} , {} , function(err , numReplaced){
+                resolved(numReplaced);
+            })
+            
+        })
     }
 }

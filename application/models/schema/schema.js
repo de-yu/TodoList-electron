@@ -33,6 +33,8 @@ type Mutation {
   updateNote(id:ID! , text: String): DmlStatus
   newDate(date: String):String
   delDate(date: String):String
+  updateDateThingId(date:String , thingId: [Int]):Int
+
   newThing(thing: String): DayThing
   delThing(id: ID!): DayThing
   updateThing(id: ID! , thing:String):DayThing

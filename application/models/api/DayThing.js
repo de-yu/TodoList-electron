@@ -5,7 +5,7 @@ export default class DayThing
 {
   static getThing({id}) 
   {
-   
+        var thing = new Datastore({ filename: './application/models/save/Thing.db', autoload: true });
 
   }
   static newThing()

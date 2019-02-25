@@ -15,6 +15,8 @@ var rootValue = {
   updateNote:Note.updateNote,
   newDate:Calendar.newDate,
   delDate:Calendar.delDate,
+  updateDateThingId:Calendar.updateDayThing,
+  
   newThing:DayThing.newThing,
   delThing:DayThing.delThing,
   updateThing:DayThing.updateThing
