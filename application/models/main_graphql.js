@@ -7,8 +7,9 @@ import Calendar from "./api/Calendar";
 
 
 var rootValue = {
+  getDayThingId:Calendar.getDayThingId,
   getNote:Note.getNote,
-  //getDayThing:DayThing,
+  getThing:DayThing.getThing,
   getCalendar:Calendar.getCalendar,
   
   newNote:Note.newNote,

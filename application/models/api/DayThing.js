@@ -6,7 +6,12 @@ export default class DayThing
   static getThing({id}) 
   {
         var thing = new Datastore({ filename: './application/models/save/Thing.db', autoload: true });
-
+        
+        return new Promise(function(resolve , reject){
+          thing.find({ _id: {$in : id}} , function(err , docs){
+            resolve(docs);
+          })
+        })
   }
   static newThing()
   {

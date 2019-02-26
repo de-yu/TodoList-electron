@@ -61,6 +61,16 @@ export default class Calendar
             });
         })
     }
+    static getDayThingId({date})
+    {
+        var Calendar = new Datastore({filename: './application/models/save/DayThing.db', autoload: true});
+        
+        return new Promise(function(resolve , reject){
+          Calendar.find({date:date} , function(err , docs){
+            resolve(docs);
+          })
+        })
+    }
     static updateDayThing({date , thingId})
     {
         var Calendar = new Datastore({filename: './application/models/save/DayThing.db', autoload: true});

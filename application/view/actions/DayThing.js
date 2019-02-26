@@ -10,6 +10,20 @@ const delDayThing = (delDayThing) => ({
     data:delDayThing
 })
 
+function getDayThing(id)
+{
+    return async function(){
+      var data = await ql(`
+      query getThing($id : ID!)
+      {
+      getThing(id:$id)
+      }
+      `
+        , {id:id})
+        
+        return data;
+    }
+}
 
 function addDayThingAsync()
 {
