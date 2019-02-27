@@ -23,7 +23,7 @@ type DmlStatus{
 
 type Query {
   getDayThingId(date: String): [Int]
-  getThing(id:ID!):[DayThing]
+  getThing(id:[ID!]):[DayThing]
   getComingNotes(date: [String]): [DayThing]
   getCalendar:[String]
   getNote:Note

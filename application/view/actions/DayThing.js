@@ -10,13 +10,30 @@ const delDayThing = (delDayThing) => ({
     data:delDayThing
 })
 
-function getDayThing(id)
+function getDayThingIdAsync(date)
+{
+  return async function(){
+    
+    var data = await ql(`
+            query getDayThingId($date: String)
+            {
+              getDayThingId(date: $date)
+            }
+     ` , {date:date})
+    
+    return data['data']['getDayThingId'];
+  }
+}
+function getDayThingAsync(id)
 {
     return async function(){
       var data = await ql(`
-      query getThing($id : ID!)
+      query getThing($id : [ID!])
       {
-      getThing(id:$id)
+        getThing(id:$id){
+            isFinish
+            thing
+        }
       }
       `
         , {id:id})
@@ -52,4 +69,4 @@ function delDayThingAsync()
     
 }
 
-export {addDayThing , delDayThing , addDayThingAsync , updateDayThingAsync , delDayThingAsync}
+export {addDayThing , delDayThing , getDayThingIdAsync ,getDayThingAsync ,addDayThingAsync , updateDayThingAsync , delDayThingAsync}

@@ -8,11 +8,15 @@ export default class DayThing extends React.Component
   constructor(props) {
     super(props)
     console.log(props);
-    }/*
+    }
     async componentDidMount ()
     {
-        console.log(this.props.match.params)
-    }*/
+      var id = await this.props.getDayThingIdAsync("2018-12-15");
+      var thing = await this.props.getDayThingAsync(id);
+      
+    console.log(thing);
+       // console.log(this.props.match.params)
+    }
     addThing()
     {
         this.props.addDayThingAsync().then(function (newdoc){
