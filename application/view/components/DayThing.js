@@ -14,7 +14,7 @@ export default class DayThing extends React.Component
       var id = await this.props.getDayThingIdAsync("2018-12-15");
       var thing = await this.props.getDayThingAsync(id);
       
-    console.log(thing);
+      this.props.setDayThing(thing);
        // console.log(this.props.match.params)
     }
     addThing()
@@ -76,7 +76,7 @@ export default class DayThing extends React.Component
                              <DayThingItem key={index} draggable="true">
                               <DayThingIsFinish type="checkbox" defaultChecked={item.isFinish}/>
                               <DayThingText ref={"a" + index} contentEditable="true" suppressContentEditableWarning="true" onBlur={this.focusEnter.bind(this)}>      
-                                {item.text}
+                                {item.thing}
                               </DayThingText>
                             </DayThingItem>
                              )

@@ -67,6 +67,7 @@ export default class Calendar
         
         return new Promise(function(resolve , reject){
           Calendar.find({date:date} , function(err , docs){
+
             var thingId = docs[0]['thing'].split(",");
             resolve(thingId);
           })

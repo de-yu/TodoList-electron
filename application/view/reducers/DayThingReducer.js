@@ -1,10 +1,12 @@
 
 
- const reducer = (state =[{isFinish:false , text:"abcd"} , {isFinish:true , text:"456789"}], action) => {
-     console.log(state);
+ const reducer = (state =[], action) => {
+
   switch (action.type) {
-      case "ADD_DAYTHING":
-        return [...state , {isFinish:false , text:"123"}];
+    case "SET_DAYTHING":
+        return action.data;
+    case "ADD_DAYTHING":
+        return [...state , {isFinish:false , text:""}];
     case "DEL_DAYTHING":
         return state;
     default:

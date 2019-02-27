@@ -17,21 +17,12 @@ export default class DayThing
   {
     
      var thing = new Datastore({ filename: './application/models/save/Thing.db', autoload: true });
-     var thingDoc = {isFinish:false , thing: "" , _id:""}
+     var thingDoc = {isFinish:false , thing: ""}
      
      return new Promise(function(resolve , reject){
-            thing.find({}, function (err, docs) {
-                var maxid = 0;
-                _.forEach(docs , function(value){
-                    maxid = Math.max(maxid , value._id)
-                })
-
-                thingDoc['_id'] = maxid +1 ;
-
-                thing.insert(thingDoc , function(err , newDocs){
-                  resolve(newDocs);
-                })
-         });
+              thing.insert(thingDoc , function(err , newDocs){
+                resolve(newDocs);
+              })
      })
   }
   static delThing({id}) {

@@ -4,11 +4,16 @@ import ql from "./../../../application/models/main_graphql"
 const addDayThing = (addDayThing) =>({
     type:"ADD_DAYTHING",
     data:addDayThing
-})
+});
 const delDayThing = (delDayThing) => ({
     type:"DEL_DAYTHING",
     data:delDayThing
-})
+});
+
+const setDayThing = (setDayThing) =>({
+  type:"SET_DAYTHING" , 
+  data: setDayThing
+});
 
 function getDayThingIdAsync(date)
 {
@@ -38,7 +43,7 @@ function getDayThingAsync(id)
       `
         , {id:id})
         
-        return data;
+        return data['data']['getThing'];
     }
 }
 
@@ -69,4 +74,4 @@ function delDayThingAsync()
     
 }
 
-export {addDayThing , delDayThing , getDayThingIdAsync ,getDayThingAsync ,addDayThingAsync , updateDayThingAsync , delDayThingAsync}
+export {addDayThing , delDayThing , setDayThing, getDayThingIdAsync ,getDayThingAsync ,addDayThingAsync , updateDayThingAsync , delDayThingAsync}
