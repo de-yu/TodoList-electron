@@ -38,6 +38,7 @@ function getDayThingAsync(id)
         getThing(id:$id){
             isFinish
             thing
+            _id
         }
       }
       `
@@ -47,31 +48,54 @@ function getDayThingAsync(id)
     }
 }
 
-function addDayThingAsync()
+function addDayThingAsync(date)
 {
     return async function()
     {
         var data = await ql(
-                `mutation newThing($thing:String){
-               newThing(thing:$thing){
-        thing
-        _id
+                `mutation newThing($date:String){
+               newThing(date:$date){
+                    thing
+                    _id
                 }
             }
-           `);
-           
-           return data;
+           ` , {date:date});
+          
+           return data['data']['newThing'];
+    }
+}
+function updateDayThingAsync(id , thing)
+{
+    return async function()
+    {
+        var data = await ql(
+            `
+                mutation updateThing($id:ID! , $text:String)
+                {
+                    updateThing(id:$id , text:$text)                  
+                }
+            `
+         , {id:id , text:thing});
+
+        return data;
     }
 }
 
-function updateDayThingAsync()
+function delDayThingAsync(id)
 {
-    
-}
-
-function delDayThingAsync()
-{
-    
+    return async function()
+    {
+        var data = await ql(
+                `
+                    mutation delThing($id:ID!)
+                    {
+                        delThing(id:$id)
+                    }
+                `
+         , {id:id})
+         
+         return data;
+    }
 }
 
 export {addDayThing , delDayThing , setDayThing, getDayThingIdAsync ,getDayThingAsync ,addDayThingAsync , updateDayThingAsync , delDayThingAsync}

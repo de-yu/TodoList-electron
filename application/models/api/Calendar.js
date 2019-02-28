@@ -42,7 +42,7 @@ export default class Calendar
     static newDate ({date})
     {
         var Calendar = new Datastore({filename: './application/models/save/DayThing.db', autoload: true});
-        var doc = {date: date, thing: ""};
+        var doc = {date: date, thing: []};
 
         return new Promise(function (resolve, reject)
         {
@@ -68,20 +68,26 @@ export default class Calendar
         return new Promise(function(resolve , reject){
           Calendar.find({date:date} , function(err , docs){
 
-            var thingId = docs[0]['thing'].split(",");
+            var thingId = docs[0]['thing'];
             resolve(thingId);
           })
         })
     }
-    static updateDayThing({date , thingId})
+    static updateDayThingId({date , thingId})
     {
         var Calendar = new Datastore({filename: './application/models/save/DayThing.db', autoload: true});
-        
+
         return new Promise(function(resolve , reject){
-            Calendar.update({date:date} , {$set: thingId} , {} , function(err , numReplaced){
-                resolved(numReplaced);
+           Calendar.find({date:date} , function(err , docs){
+               
+            docs[0]['thing'].push(thingId)
+            var newId = docs[0]['thing'];
+
+           Calendar.update({date:date} , {$set: {thing:newId}} , {} , function(err , numReplaced){
+               console.log(err , numReplaced)
+                resolve(numReplaced);
             })
-            
+          })
         })
     }
 }

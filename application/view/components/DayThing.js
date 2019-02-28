@@ -19,20 +19,26 @@ export default class DayThing extends React.Component
     }
     addThing()
     {
-        this.props.addDayThingAsync().then(function (newdoc){
-            this.props.addDayThing();
+        this.props.addDayThingAsync("2018-12-15").then(function (newdoc){
+            console.log(newdoc);
+        
+            this.props.addDayThing(newdoc._id);
         }.bind(this))
     }
-    focusEnter(event)
+    updateThing(event)
     {
-        console.log(event);
-        console.log("a");
+        this.props.updateDayThingAsync(event.target.id , event.target.innerHTML).then(function(data){
+            console.log(data)
+        })
     }
-    
+    isFinishCheck(event)
+    {
+        
+    }
     componentDidUpdate()
     {
-        var focusElement = "a".concat(this.props.data.length-1);
-        this.refs[focusElement].focus();
+        /*var focusElement = this.props.data[this.props.data.length-1]._id;
+        this.refs[focusElement].focus();*/
     }
     allowDrop(ev)
      {
@@ -74,8 +80,8 @@ export default class DayThing extends React.Component
 
                           return (
                              <DayThingItem key={index} draggable="true">
-                              <DayThingIsFinish type="checkbox" defaultChecked={item.isFinish}/>
-                              <DayThingText ref={"a" + index} contentEditable="true" suppressContentEditableWarning="true" onBlur={this.focusEnter.bind(this)}>      
+                              <DayThingIsFinish id ={item._id+"-isFinish"} type="checkbox" defaultChecked={item.isFinish}/>
+                              <DayThingText id={item._id} ref={item._id} contentEditable="true" suppressContentEditableWarning="true" onInput={this.updateThing.bind(this)}>      
                                 {item.thing}
                               </DayThingText>
                             </DayThingItem>
