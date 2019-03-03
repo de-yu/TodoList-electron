@@ -84,7 +84,24 @@ export default class Calendar
             var newId = docs[0]['thing'];
 
            Calendar.update({date:date} , {$set: {thing:newId}} , {} , function(err , numReplaced){
-               console.log(err , numReplaced)
+                resolve(numReplaced);
+            })
+          })
+        })
+    }
+    
+    static delDayThingId({date , thingId})
+    {
+        var Calendar = new Datastore({filename: './application/models/save/DayThing.db', autoload: true});
+        
+        return new Promise(function(resolve , reject){
+           Calendar.find({date:date} , function(err , docs){
+           console.log(date , docs);    
+            var newId = _.remove(docs[0]['thing'] , function(value){
+                return value!=thingId
+            });
+
+           Calendar.update({date:date} , {$set: {thing:newId}} , {} , function(err , numReplaced){
                 resolve(numReplaced);
             })
           })

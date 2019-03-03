@@ -15,6 +15,11 @@ const setDayThing = (setDayThing) =>({
   data: setDayThing
 });
 
+const updateDayThing = (updateDayThing) => ({
+    type:"UPDATE_DAYTHING" , 
+    data:updateDayThing
+});
+
 function getDayThingIdAsync(date)
 {
   return async function(){
@@ -81,21 +86,21 @@ function updateDayThingAsync(id , thing)
     }
 }
 
-function delDayThingAsync(id)
+function delDayThingAsync(date , id)
 {
     return async function()
     {
         var data = await ql(
                 `
-                    mutation delThing($id:ID!)
+                    mutation delThing($date:String , $id:ID!)
                     {
-                        delThing(id:$id)
+                        delThing(date:$date , id:$id)
                     }
                 `
-         , {id:id})
+         , {date:date , id:id})
          
          return data;
     }
 }
 
-export {addDayThing , delDayThing , setDayThing, getDayThingIdAsync ,getDayThingAsync ,addDayThingAsync , updateDayThingAsync , delDayThingAsync}
+export {addDayThing , delDayThing , setDayThing,updateDayThing  ,  getDayThingIdAsync ,getDayThingAsync ,addDayThingAsync , updateDayThingAsync , delDayThingAsync}

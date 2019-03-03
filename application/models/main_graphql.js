@@ -26,7 +26,16 @@ var rootValue = {
             });
       })
   },
-  delThing:DayThing.delThing,
+  delThing:function({date , id}){
+      return new Promise(function(resolve , reject){
+          DayThing.delThing(id).then(function(delThingData){
+              console.log(date , id);
+              Calendar.delDayThingId({date:date , thingId:id}).then(function(delDayThingIdData){
+                  resolve(delDayThingIdData)
+              })
+          })
+      })
+  },
   updateThing:DayThing.updateThing
 };
 

@@ -26,9 +26,11 @@ export default class DayThing extends React.Component
         }.bind(this))
     }
     updateThing(event)
-    {
+    {   
+        this.props.updateDayThing(event.target.id , event.target.innerHTML);
+    
         this.props.updateDayThingAsync(event.target.id , event.target.innerHTML).then(function(data){
-            console.log(data)
+            console.log(data);
         })
     }
     isFinishCheck(event)
@@ -49,16 +51,21 @@ export default class DayThing extends React.Component
      drag(ev)
      {
        console.log("drag");
-             ev.dataTransfer.setData("Text",ev.target.id);
+       var delid = ev.target.id.replace("-item" , "");
+       ev.dataTransfer.setData("id",delid);
      }
 
      drop(ev)
      {
 
              ev.preventDefault();
-             var data=ev.dataTransfer.getData("Text");
-                 console.log(data);
-             ev.target.appendChild(document.getElementById(data));
+             var id=ev.dataTransfer.getData("id");
+             this.props.delDayThingAsync("2018-12-15" , id).then(function(data){
+                 
+                console.log(data);
+                this.props.delDayThing(id);
+             }.bind(this))
+             //ev.target.appendChild(document.getElementById(data));
      }
     render() {
       return(
@@ -79,7 +86,7 @@ export default class DayThing extends React.Component
                         this.props.data.map(function(item , index){
 
                           return (
-                             <DayThingItem key={index} draggable="true">
+                             <DayThingItem id={item._id+"-item"} key={index} draggable="true" onDragStart={this.drag.bind(this)}>
                               <DayThingIsFinish id ={item._id+"-isFinish"} type="checkbox" defaultChecked={item.isFinish}/>
                               <DayThingText id={item._id} ref={item._id} contentEditable="true" suppressContentEditableWarning="true" onInput={this.updateThing.bind(this)}>      
                                 {item.thing}
