@@ -5,7 +5,13 @@ import {addDayThing, delDayThing, setDayThing, updateDayThing, getDayThingIdAsyn
 import {connect} from 'react-redux'
 
 
-const mapStateToProps = state => ({data: state.DayThing})
+const mapStateToProps = state => ({
+  data: state.DayThing , 
+  componentName:{
+    item:"-item",
+    isFinish:"-isFinish"
+  }
+})
 
 const mapDispatchToProps = (dispatch, props) => ({
         addDayThing: function (id){
@@ -17,8 +23,8 @@ const mapDispatchToProps = (dispatch, props) => ({
         setDayThing: function (data){
             dispatch(setDayThing(data))
         },
-        updateDayThing: function (id, thing){
-            dispatch(updateDayThing({id: id, thing: thing}))
+        updateDayThing: function (id, isFinish ,thing){
+            dispatch(updateDayThing({id: id,isFinish:isFinish, thing: thing}))
         },
         getDayThingIdAsync: function (date){
             return dispatch(getDayThingIdAsync(date))
@@ -29,8 +35,8 @@ const mapDispatchToProps = (dispatch, props) => ({
         addDayThingAsync: function (date){
             return dispatch(addDayThingAsync(date))
         },
-        updateDayThingAsync: function (id, thing){
-            return dispatch(updateDayThingAsync(id, thing))
+        updateDayThingAsync: function (id,isFinish ,  thing){
+            return dispatch(updateDayThingAsync(id, isFinish ,thing))
         },
         delDayThingAsync: function (date, id){
             return dispatch(delDayThingAsync(date, id))

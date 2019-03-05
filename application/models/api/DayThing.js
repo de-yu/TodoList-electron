@@ -35,11 +35,11 @@ export default class DayThing
      })
 
   }
-  static updateThing({id , text}) {
+  static updateThing({id ,isFinish, text}) {
          var thing = new Datastore({ filename: './application/models/save/Thing.db', autoload: true });
          
          return new Promise(function(resolve , reject){
-              thing.update({_id : id} , {$set :{ thing: text}} , {} , function(err , numReplace){
+              thing.update({_id : id} , {$set :{ thing: text , isFinish:isFinish}} , {} , function(err , numReplace){
                 resolve(numReplace);  
               })
          })

@@ -13,7 +13,7 @@ export default class DayThing extends React.Component
     {
       var id = await this.props.getDayThingIdAsync("2018-12-15");
       var thing = await this.props.getDayThingAsync(id);
-      
+
       this.props.setDayThing(thing);
        // console.log(this.props.match.params)
     }
@@ -26,16 +26,17 @@ export default class DayThing extends React.Component
         }.bind(this))
     }
     updateThing(event)
-    {   
-        this.props.updateDayThing(event.target.id , event.target.innerHTML);
-    
+    {  
+      var id = event.target.id.split("-")[0];
+      
+        this.props.updateDayThing(id ,
+        this.refs[id + this.props.componentName.isFinish].checked,
+        this.refs[id].innerHTML);
+        
+    /*
         this.props.updateDayThingAsync(event.target.id , event.target.innerHTML).then(function(data){
             console.log(data);
-        })
-    }
-    isFinishCheck(event)
-    {
-        
+        })*/
     }
     componentDidUpdate()
     {
@@ -86,8 +87,8 @@ export default class DayThing extends React.Component
                         this.props.data.map(function(item , index){
 
                           return (
-                             <DayThingItem id={item._id+"-item"} key={index} draggable="true" onDragStart={this.drag.bind(this)}>
-                              <DayThingIsFinish id ={item._id+"-isFinish"} type="checkbox" defaultChecked={item.isFinish}/>
+                             <DayThingItem id={item._id+ this.props.componentName.item} key={index} draggable="true" onDragStart={this.drag.bind(this)}>
+                              <DayThingIsFinish id ={item._id+"-isFinish"} ref={item._id+ this.props.componentName.isFinish} type="checkbox" defaultChecked={item.isFinish} onChange={this.updateThing.bind(this)} />
                               <DayThingText id={item._id} ref={item._id} contentEditable="true" suppressContentEditableWarning="true" onInput={this.updateThing.bind(this)}>      
                                 {item.thing}
                               </DayThingText>

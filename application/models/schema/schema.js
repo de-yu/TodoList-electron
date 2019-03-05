@@ -37,7 +37,7 @@ type Mutation {
 
   newThing(date: String): DayThing
   delThing(date: String , id: ID!): Int
-  updateThing(id: ID! , text:String):Int
+  updateThing(id: ID! ,isFinish:Boolean, text:String):Int
 }
 
 `

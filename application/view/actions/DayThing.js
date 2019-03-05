@@ -69,18 +69,18 @@ function addDayThingAsync(date)
            return data['data']['newThing'];
     }
 }
-function updateDayThingAsync(id , thing)
+function updateDayThingAsync(id ,isFinish ,  thing)
 {
     return async function()
     {
         var data = await ql(
             `
-                mutation updateThing($id:ID! , $text:String)
+                mutation updateThing($id:ID! ,$isFinish:Boolean ,  $text:String)
                 {
-                    updateThing(id:$id , text:$text)                  
+                    updateThing(id:$id ,isFinish:$isFinish, text:$text)                  
                 }
             `
-         , {id:id , text:thing});
+         , {id:id ,isFinish:isFinish ,  text:thing});
 
         return data;
     }
