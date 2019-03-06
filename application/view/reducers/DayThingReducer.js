@@ -16,8 +16,6 @@
         var index = _.findIndex(state , {_id:action.data.id});
         state[index].isFinish = action.data.isFinish;
         state[index].thing = action.data.thing;
-
-            console.log(action.data);
         return state;
     default:
         return state;

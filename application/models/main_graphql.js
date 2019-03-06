@@ -11,6 +11,12 @@ var rootValue = {
   getNote:Note.getNote,
   getThing:DayThing.getThing,
   getCalendar:Calendar.getCalendar,
+  getWaitingThing:function(){
+    
+  },
+  getFinishThing:function(){
+    
+  },
   
   newNote:Note.newNote,
   updateNote:Note.updateNote,

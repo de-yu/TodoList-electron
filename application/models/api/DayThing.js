@@ -13,6 +13,29 @@ export default class DayThing
           })
         })
   }
+  
+  static getWaitingThing({id})
+  {
+        var thing = new Datastore({ filename: './application/models/save/Thing.db', autoload: true });
+
+        return new Promise(function(resolve , reject){
+          thing.find({ _id: {$in : id} , isFinish:false} , function(err , docs){
+           resolve(docs);
+          })
+        })
+  }
+  
+  static getFinishThing({id})
+  {
+        var thing = new Datastore({ filename: './application/models/save/Thing.db', autoload: true });
+
+        return new Promise(function(resolve , reject){
+          thing.find({ _id: {$in : id} , isFinish:true} , function(err , docs){
+           resolve(docs);
+          })
+        })
+  }
+  
   static newThing()
   {
     

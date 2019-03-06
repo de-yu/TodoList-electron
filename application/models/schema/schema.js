@@ -27,6 +27,8 @@ type Query {
   getComingNotes(date: [String]): [DayThing]
   getCalendar:[String]
   getNote:Note
+  getFinishThing:[DayThing]
+  getWaitingThing:[DayThing]
 }
 
 type Mutation {
