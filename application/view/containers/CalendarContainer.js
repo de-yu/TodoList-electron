@@ -26,11 +26,9 @@ const mapDispatchToProps = (dispatch, props) => ({
         },
         setDate: function (data){
             dispatch(setDate(data))
-        },
-        dispatch: dispatch
+        }
     }
 );
-
 
 var newNavDate = connect(mapStateToProps, mapDispatchToProps)(NavDate);
 

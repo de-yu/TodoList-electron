@@ -1,12 +1,14 @@
 
 
+/* global _ */
+
 const reducer = (state = {date:{}}, action) => {
 
     switch (action.type) {
         case 'setDate':
             return {date: action.data};
         case 'delDate':
-            return {date: _.remove(state['date'] , (val)=> (val!=action.data))};
+            return {date: _.remove(state['date'] , (val)=> (val!==action.data))};
         case 'newDate':
             return {date: _.uniq([...state['date'] , action.data]).sort()};
         default:

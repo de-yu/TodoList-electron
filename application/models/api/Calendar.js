@@ -22,6 +22,7 @@ export default class Calendar
                 {
                     data.push(value['date']);
                 })
+                console.log(data);
                 resolve(data);
             })
         });

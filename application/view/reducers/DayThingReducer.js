@@ -4,7 +4,6 @@
 
   switch (action.type) {
     case "SET_DAYTHING":
-        console.log(action.data);
         state = action.data;
         return state;
     case "ADD_DAYTHING":
@@ -13,6 +12,7 @@
         var newState= _.remove(state , (val) => ( val._id !=action.data.id));
         return newState;
     case "UPDATE_DAYTHING":    
+      console.log(action.data.thing);
         var index = _.findIndex(state , {_id:action.data.id});
         state[index].isFinish = action.data.isFinish;
         state[index].thing = action.data.thing;

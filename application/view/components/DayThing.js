@@ -32,9 +32,10 @@ export default class DayThing extends React.Component
         this.props.updateDayThing(id ,
         this.refs[id + this.props.componentName.isFinish].checked,
         this.refs[id].innerHTML);
-        
-    /*
-        this.props.updateDayThingAsync(event.target.id , event.target.innerHTML).then(function(data){
+        /*
+        this.props.updateDayThingAsync(id ,
+        this.refs[id + this.props.componentName.isFinish].checked,
+        this.refs[id].innerHTML).then(function(data){
             console.log(data);
         })*/
     }
@@ -68,6 +69,10 @@ export default class DayThing extends React.Component
              }.bind(this))
              //ev.target.appendChild(document.getElementById(data));
      }
+     createMarkup(thing)
+     {
+       return {__html: thing};
+     }
     render() {
       return(
               <Main>
@@ -83,14 +88,12 @@ export default class DayThing extends React.Component
 
                       <DayThingBoardEdit>
                       {
- 
                         this.props.data.map(function(item , index){
 
                           return (
                              <DayThingItem id={item._id+ this.props.componentName.item} key={index} draggable="true" onDragStart={this.drag.bind(this)}>
                               <DayThingIsFinish id ={item._id+"-isFinish"} ref={item._id+ this.props.componentName.isFinish} type="checkbox" defaultChecked={item.isFinish} onChange={this.updateThing.bind(this)} />
-                              <DayThingText id={item._id} ref={item._id} contentEditable="true" suppressContentEditableWarning="true" onInput={this.updateThing.bind(this)}>      
-                                {item.thing}
+                              <DayThingText id={item._id} ref={item._id} contentEditable="true" suppressContentEditableWarning="true" onInput={this.updateThing.bind(this)} dangerouslySetInnerHTML={this.createMarkup(item.thing)}>      
                               </DayThingText>
                             </DayThingItem>
                              )

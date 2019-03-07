@@ -64,6 +64,8 @@ export default class NavDate extends React.Component{
         }.bind(this))
         cal.push(<Year key={key_1}><YearNum>{key_1}</YearNum><AllMonth>{months}</AllMonth></Year>)
         }.bind(this))
+        
+        console.log(group);
     }
 
       return(

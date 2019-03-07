@@ -55,7 +55,7 @@ export const DayThingIsFinish = styled.input
 `
 `;
 
-export const DayThingText = styled.p
+export const DayThingText = styled.div
 `
     width:90%;
     min-height:16px;
