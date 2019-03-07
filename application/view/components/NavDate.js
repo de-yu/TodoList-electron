@@ -52,22 +52,22 @@ export default class NavDate extends React.Component{
               return val.substring(5,7);
           })
       })
-        
+    
     _.forEach(group , function(value_1 , key_1){
         var months = [];
-        _.forEach(value_1 , function(value_2 , key_2){
-            var days = []
-            _.forEach(value_2 , function(value_3){
+        var months_keys = Object.keys(value_1).sort();
+         for (var i = 0; i < months_keys.length; i++) {
+             var value_2 = value_1[months_keys[i]]
+             var days = []
+             _.forEach( value_2 , function(value_3){
                  days.push(<Day id={value_3} key={value_3} draggable="true" onDragStart={this.drag.bind(this)}><DayLink id={value_3} to={"/DayThing/"+value_3.replace(/-/g , "/")}>{value_3.substring(8,10)}</DayLink></Day>)
             }.bind(this))
-            months.push(<Month key={key_2}><MonthNum>{key_2}</MonthNum><MonthDays>{days}</MonthDays></Month>)        
-        }.bind(this))
+            months.push(<Month key={months_keys[i]}><MonthNum>{months_keys[i]}</MonthNum><MonthDays>{days}</MonthDays></Month>)       
+         }
+         
         cal.push(<Year key={key_1}><YearNum>{key_1}</YearNum><AllMonth>{months}</AllMonth></Year>)
         }.bind(this))
-        
-        console.log(group);
     }
-
       return(
 
     <NavCalendar >
