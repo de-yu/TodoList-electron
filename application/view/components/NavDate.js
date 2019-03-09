@@ -11,9 +11,8 @@ export default class NavDate extends React.Component{
     }
     async componentDidMount (){
         var date = await this.props.getDate();
-
+        console.log(date);
         this.props.setDate(date);
-
     }
     newDate (){
         this.props.newDateAsync(this.refs.dateInput.value).then(function(data){
@@ -22,7 +21,6 @@ export default class NavDate extends React.Component{
         this.props.newDate(this.refs.dateInput.value);
     }
     allowDrop (ev){
-        console.log("allow");
         ev.preventDefault();
     }
     drag (ev){

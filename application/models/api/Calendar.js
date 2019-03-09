@@ -16,13 +16,11 @@ export default class Calendar
         {
             Calendar.find({}).sort({date: 1}).exec(function (err, docs)
             {
-
                 var data = [];
                 _.forEach(docs, function (value)
                 {
                     data.push(value['date']);
                 })
-                console.log(data);
                 resolve(data);
             })
         });
@@ -97,7 +95,6 @@ export default class Calendar
         
         return new Promise(function(resolve , reject){
            Calendar.find({date:date} , function(err , docs){
-           console.log(date , docs);    
             var newId = _.remove(docs[0]['thing'] , function(value){
                 return value!=thingId
             });

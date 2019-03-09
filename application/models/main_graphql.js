@@ -5,7 +5,6 @@ import Note from "./api/Note";
 import DayThing from "./api/DayThing";
 import Calendar from "./api/Calendar";
 
-
 var rootValue = {
   getDayThingId:Calendar.getDayThingId,
   getNote:Note.getNote,

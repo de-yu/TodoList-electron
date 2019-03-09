@@ -8,7 +8,7 @@ export default class Note
   
   static newNote() {
 
-    var Note = new Datastore({filename:'./application/models/save/Note.db',autoload:true});
+    var Note = new Datastore({filename:'./application/models/save/Note.db',autoload:true , inMemoryOnly: true});
     var doc = {note:""};
     return new Promise(function(resolve,reject) {
       Note.findOne({},function(err,docs) {
@@ -26,7 +26,7 @@ export default class Note
   }
   
   static getNote() {
-    var Note = new Datastore({filename:'./application/models/save/Note.db',autoload:true});
+    var Note = new Datastore({filename:'./application/models/save/Note.db',autoload:true , inMemoryOnly: true});
     return new Promise(function(resolve,reject) {
 
       Note.findOne({},function(err,docs) {
@@ -38,7 +38,7 @@ export default class Note
   }
   static updateNote(  {id,text})
   {
-    var Note = new Datastore({filename:'./application/models/save/Note.db',autoload:true});
+    var Note = new Datastore({filename:'./application/models/save/Note.db',autoload:true , inMemoryOnly: true});
     return new Promise(function(resolve,reject) {
       Note.update({_id:id},{$set:{note:text}},function(err,newDocs) {
         
