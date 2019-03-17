@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import styled from 'styled-components';
 
 export const NavCalendar = styled.div
@@ -127,7 +127,7 @@ export const Day = styled.li
 
 `;
 
-export const DayLink = styled(Link)`
+export const DayLink = styled(NavLink)`
   text-decoration:none;
   color:#fff;
 `;

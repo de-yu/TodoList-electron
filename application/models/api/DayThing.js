@@ -1,11 +1,10 @@
 
-var Datastore = require('nedb');
+var thing = new Nedb({filename: './application/models/save/Thing.db'});
 
-export default class DayThing
-{
+export default class DayThing{
     static getThing ({id})
     {
-        var thing = new Datastore({filename: './application/models/save/Thing.db', autoload: true});
+        thing.loadDatabase();
 
         return new Promise(function (resolve, reject){
             thing.find({_id: {$in: id}}, function (err, docs){
@@ -15,7 +14,7 @@ export default class DayThing
     }
     static getWaitingThing ({id})
     {
-        var thing = new Datastore({filename: './application/models/save/Thing.db', autoload: true});
+        thing.loadDatabase();
 
         return new Promise(function (resolve, reject){
             thing.find({_id: {$in: id}, isFinish: false}, function (err, docs){
@@ -25,7 +24,7 @@ export default class DayThing
     }
     static getFinishThing ({id})
     {
-        var thing = new Datastore({filename: './application/models/save/Thing.db', autoload: true});
+        thing.loadDatabase();
 
         return new Promise(function (resolve, reject){
             thing.find({_id: {$in: id}, isFinish: true}, function (err, docs){
@@ -35,7 +34,7 @@ export default class DayThing
     }
     static newThing (){
 
-        var thing = new Datastore({filename: './application/models/save/Thing.db', autoload: true});
+        thing.loadDatabase();
         var thingDoc = {isFinish: false, thing: ""}
 
         return new Promise(function (resolve, reject){
@@ -45,7 +44,7 @@ export default class DayThing
         })
     }
     static delThing ({id}) {
-        var thing = new Datastore({filename: './application/models/save/Thing.db', autoload: true});
+        thing.loadDatabase();
 
         return new Promise(function (resolve, reject){
             thing.remove({_id: id}, function (err, numRemoved){
@@ -55,7 +54,7 @@ export default class DayThing
 
     }
     static updateThing ({id, isFinish, text}) {
-        var thing = new Datastore({filename: './application/models/save/Thing.db', autoload: true , onload:true});
+        thing.loadDatabase();
 
         return new Promise(function (resolve, reject){
             thing.update({_id: id}, {$set: {thing: text, isFinish: isFinish}}, {}, function (err, numReplace){

@@ -1,5 +1,5 @@
-var Datastore = require('nedb');
-var _ = require('lodash');
+
+var CalendarCon =  new Nedb({filename: './application/models/save/DayThing.db'});
 
 export default class Calendar
 {
@@ -10,28 +10,38 @@ export default class Calendar
     static getCalendar (date)
     {
 
-        var Calendar = new Datastore({filename: './application/models/save/DayThing.db', autoload: true});
-
+        CalendarCon.loadDatabase();
+        
         return new Promise(function (resolve, reject)
         {
-            Calendar.find({}).sort({date: 1}).exec(function (err, docs)
+            CalendarCon.find({}).projection({date:1 , _id:0}).sort({date: 1}).exec(function (err, docs)
             {
-                var data = [];
-                _.forEach(docs, function (value)
-                {
-                    data.push(value['date']);
-                })
+                var data = _.map(docs, 'date');
                 resolve(data);
             })
         });
 
     }
-    static delDate ({date}){
-        var Calendar = new Datastore({filename: './application/models/save/DayThing.db', autoload: true});
+    static getAllThingId()
+    {
+        CalendarCon.loadDatabase();
 
         return new Promise(function (resolve, reject)
         {
-            Calendar.remove({date: date}, function (err, numRemoved)
+            CalendarCon.find({}).sort({date: 1}).exec(function (err, docs)
+            {
+                var data = _.map(docs, 'thing');
+                data = _.flatten(data);
+                resolve(data);
+            })
+        });
+    }
+    static delDate ({date}){
+                CalendarCon.loadDatabase();
+
+        return new Promise(function (resolve, reject)
+        {
+            CalendarCon.remove({date: date}, function (err, numRemoved)
             {
                 resolve(numRemoved);
             });
@@ -40,21 +50,21 @@ export default class Calendar
     }
     static newDate ({date})
     {
-        var Calendar = new Datastore({filename: './application/models/save/DayThing.db', autoload: true});
+        CalendarCon.loadDatabase();
         var doc = {date: date, thing: []};
 
         return new Promise(function (resolve, reject)
         {
-            Calendar.findOne({date: date}, function (err, docs)
+            CalendarCon.findOne({date: date}, function (err, docs)
             {
 
                 if(docs === null){
-                    Calendar.insert(doc, function (err, newDocs)
+                    CalendarCon.insert(doc, function (err, newDocs)
                     {
                         resolve(date);
                     });
                 } else {
-                    console.log("already have date");
+
                     resolve("already have date");
                 }
             });
@@ -62,10 +72,10 @@ export default class Calendar
     }
     static getDayThingId({date})
     {
-        var Calendar = new Datastore({filename: './application/models/save/DayThing.db', autoload: true});
+        CalendarCon.loadDatabase();
         
         return new Promise(function(resolve , reject){
-          Calendar.find({date:date} , function(err , docs){
+          CalendarCon.find({date:date} , function(err , docs){
 
             var thingId = docs[0]['thing'];
             resolve(thingId);
@@ -74,15 +84,15 @@ export default class Calendar
     }
     static updateDayThingId({date , thingId})
     {
-        var Calendar = new Datastore({filename: './application/models/save/DayThing.db', autoload: true});
+        CalendarCon.loadDatabase();
 
         return new Promise(function(resolve , reject){
-           Calendar.find({date:date} , function(err , docs){
+           CalendarCon.find({date:date} , function(err , docs){
                
             docs[0]['thing'].push(thingId)
             var newId = docs[0]['thing'];
 
-           Calendar.update({date:date} , {$set: {thing:newId}} , {} , function(err , numReplaced){
+           CalendarCon.update({date:date} , {$set: {thing:newId}} , {} , function(err , numReplaced){
                 resolve(numReplaced);
             })
           })
@@ -91,15 +101,15 @@ export default class Calendar
     
     static delDayThingId({date , thingId})
     {
-        var Calendar = new Datastore({filename: './application/models/save/DayThing.db', autoload: true});
+        CalendarCon.loadDatabase();
         
         return new Promise(function(resolve , reject){
-           Calendar.find({date:date} , function(err , docs){
+           CalendarCon.find({date:date} , function(err , docs){
             var newId = _.remove(docs[0]['thing'] , function(value){
                 return value!=thingId
             });
 
-           Calendar.update({date:date} , {$set: {thing:newId}} , {} , function(err , numReplaced){
+           CalendarCon.update({date:date} , {$set: {thing:newId}} , {} , function(err , numReplaced){
                 resolve(numReplaced);
             })
           })
