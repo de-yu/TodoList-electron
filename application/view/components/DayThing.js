@@ -24,7 +24,6 @@ export default class DayThing extends React.Component
         var thingDate = _.join([this.props.match.params.Year , this.props.match.params.Month , this.props.match.params.Day] , "-");    
         this.updateThingProps();
         this.props.addDayThingAsync(thingDate).then(function (newdoc){
-            console.log(newdoc);
             this.props.addDayThing(newdoc._id);
         }.bind(this))
     }
@@ -48,8 +47,6 @@ export default class DayThing extends React.Component
     }
     componentDidUpdate()
     {
-        console.log('Component WILL componentDidUpdate!')
-    
         /*var focusElement = this.props.data[this.props.data.length-1]._id;
         this.refs[focusElement].focus();*/
     }
@@ -100,8 +97,8 @@ export default class DayThing extends React.Component
                         this.props.data.map(function(item , index){
 
                           return (
-                             <DayThingItem id={item._id+ this.props.componentName.item} key={index} draggable="true" onDragStart={this.drag.bind(this)}>
-                              <DayThingIsFinish id ={item._id+"-isFinish"} ref={item._id+ this.props.componentName.isFinish} type="checkbox" defaultChecked={item.isFinish} onChange={this.updateThingDB.bind(this)} />
+                             <DayThingItem id={item._id+ this.props.componentName.item} key={item._id+ this.props.componentName.item} draggable="true" onDragStart={this.drag.bind(this)}>
+                              <DayThingIsFinish id ={item._id+ this.props.componentName.isFinish}  ref={item._id+ this.props.componentName.isFinish}  type="checkbox" defaultChecked={item.isFinish} onChange={this.updateThingDB.bind(this)} />
                               <DayThingText id={item._id} ref={item._id} contentEditable="true" suppressContentEditableWarning="true" onInput={this.updateThingDB.bind(this)} dangerouslySetInnerHTML={this.createMarkup(item.thing)}>      
                               </DayThingText>
                             </DayThingItem>
