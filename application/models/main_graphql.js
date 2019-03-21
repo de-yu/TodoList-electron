@@ -10,11 +10,24 @@ var rootValue = {
   getNote:Note.getNote,
   getThing:DayThing.getThing,
   getCalendar:Calendar.getCalendar,
+  
   getWaitingThing:function(){
-    
+        return new Promise(function(resolve , reject){
+        Calendar.getAllThingId().then(function(allThingId){
+            DayThing.getWaitingThing({id:allThingId}).then(function(waitingThing){
+                resolve(waitingThing);
+            });
+        });
+    });
   },
   getFinishThing:function(){
-    
+        return new Promise(function(resolve , reject){
+        Calendar.getAllThingId().then(function(allThingId){
+            DayThing.getFinishThing({id:allThingId}).then(function(finishThing){
+                resolve(finishThing);
+            });
+        });
+    });
   },
   
   newNote:Note.newNote,
@@ -29,17 +42,17 @@ var rootValue = {
                               resolve(newThingData);
                 });
             });
-      })
+      });
   },
   delThing:function({date , id}){
       return new Promise(function(resolve , reject){
           DayThing.delThing(id).then(function(delThingData){
               console.log(date , id);
               Calendar.delDayThingId({date:date , thingId:id}).then(function(delDayThingIdData){
-                  resolve(delDayThingIdData)
-              })
-          })
-      })
+                  resolve(delDayThingIdData);
+              });
+          });
+      });
   },
   updateThing:DayThing.updateThing
 };

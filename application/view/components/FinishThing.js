@@ -1,25 +1,29 @@
 
 import React from 'react';
 import {Main} from './StyleComponent/Main'
-import {FinishBoard, Tab, TabMark, TabContent, ContentBlock, Date, ThingBlock, Thing} from './StyleComponent/FinishThing'
+import {FinishBoard, Tab, TabMark , TabMarkActive, TabContent, ContentBlock, Date, ThingBlock, Thing} from './StyleComponent/FinishThing'
+import ql from "./../../../application/models/main_graphql"
 
 export default class FinishThing extends React.Component{
     constructor (props){
         super()
     }
     async componentDidMount (){
-
+        
     }
     render (){
         return(
                 <Main>
                     <FinishBoard>
                         <Tab>
-                            <TabMark>
+                            <TabMarkActive>
                             2019
-                            </TabMark>
+                            </TabMarkActive>
                             <TabMark>
                             2018
+                            </TabMark>
+                            <TabMark>
+                            2017
                             </TabMark>
                         </Tab>
                         <TabContent>
