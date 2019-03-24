@@ -25,17 +25,18 @@ export default class DayThing{
     static getFinishThing ({id})
     {
         thing.loadDatabase();
-
+        
         return new Promise(function (resolve, reject){
             thing.find({_id: {$in: id}, isFinish: true}, function (err, docs){
-                resolve(docs);
+                    resolve(docs);
+                })
             })
-        })
+
     }
-    static newThing (){
+    static newThing ({date}){
 
         thing.loadDatabase();
-        var thingDoc = {isFinish: false, thing: ""}
+        var thingDoc = {isFinish: false, thing: "" , date:date};
 
         return new Promise(function (resolve, reject){
             thing.insert(thingDoc, function (err, newDocs){

@@ -1,4 +1,6 @@
 
+/* global _ */
+
 var { graphql, buildSchema } = require('graphql');
 import schema from "./schema/schema";
 import Note from "./api/Note";
@@ -11,18 +13,18 @@ var rootValue = {
   getThing:DayThing.getThing,
   getCalendar:Calendar.getCalendar,
   
-  getWaitingThing:function(){
+  getWaitingThing:function({year}){
         return new Promise(function(resolve , reject){
-        Calendar.getAllThingId().then(function(allThingId){
+        Calendar.getYearThingId({year:year}).then(function(allThingId){
             DayThing.getWaitingThing({id:allThingId}).then(function(waitingThing){
                 resolve(waitingThing);
             });
         });
     });
   },
-  getFinishThing:function(){
+  getFinishThing:function({year}){
         return new Promise(function(resolve , reject){
-        Calendar.getAllThingId().then(function(allThingId){
+        Calendar.getYearThingId(year).then(function(allThingId){
             DayThing.getFinishThing({id:allThingId}).then(function(finishThing){
                 resolve(finishThing);
             });
@@ -37,7 +39,7 @@ var rootValue = {
   
   newThing:function({date}){
       return new Promise(function(resolve , reject){
-          DayThing.newThing().then(function(newThingData){
+          DayThing.newThing({date:date}).then(function(newThingData){
                 Calendar.updateDayThingId({date:date , thingId:newThingData._id}).then(function(updateDayThingIdData){
                               resolve(newThingData);
                 });
@@ -46,7 +48,7 @@ var rootValue = {
   },
   delThing:function({date , id}){
       return new Promise(function(resolve , reject){
-          DayThing.delThing(id).then(function(delThingData){
+          DayThing.delThing({id:id}).then(function(delThingData){
               console.log(date , id);
               Calendar.delDayThingId({date:date , thingId:id}).then(function(delDayThingIdData){
                   resolve(delDayThingIdData);

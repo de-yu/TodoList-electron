@@ -70,7 +70,7 @@ export default class DayThing extends React.Component
              this.updateThingProps();
              
              var id=ev.dataTransfer.getData("id");
-             this.props.delDayThingAsync("2018-12-15" , id).then(function(data){
+             this.props.delDayThingAsync(_.join([this.props.match.params.Year , this.props.match.params.Month , this.props.match.params.Day] , "-") , id).then(function(data){
                 console.log(data);
                 this.props.delDayThing(id);
              }.bind(this))

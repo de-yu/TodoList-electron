@@ -22,17 +22,17 @@ export default class Calendar
         });
 
     }
-    static getAllThingId()
+    static getYearThingId({year})
     {
         CalendarCon.loadDatabase();
 
         return new Promise(function (resolve, reject)
         {
-            CalendarCon.find({}).sort({date: 1}).exec(function (err, docs)
+            CalendarCon.find({date: new RegExp(year)} , {thing:1}).sort({date: 1}).exec(function (err, docs)
             {
-                var data = _.map(docs, 'thing');
-                data = _.flatten(data);
-                resolve(data);
+                var allThingId = _.map(docs, 'thing');
+                allThingId = _.flatten(allThingId); 
+                resolve(allThingId);
             })
         });
     }

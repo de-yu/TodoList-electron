@@ -13,6 +13,8 @@ export const FinishBoard = styled.div
 
 export const Tab = styled.div
 `
+    width:90%;
+    margin:0 auto;
     height:60px;
     display:flex;
 `;
@@ -22,13 +24,12 @@ export const  TabMark = styled.p
     line-height:60px;
     flex-grow:1;
     text-align: center;
-    color:#555;
+    color:#888;
 `;
 
 export const TabMarkActive = styled(TabMark)
 `
-    background:#555;
-    color:#fff;
+    border-bottom:2px solid #555;
 `;
 
 export const TabContent = styled.div
@@ -38,22 +39,35 @@ export const TabContent = styled.div
 
 export const ContentBlock = styled.div
 `
-    display:flex;
+    width:90%;
+    margin:0 auto;
 `;
-
 
 export const Date = styled.div
 `
-      background:#555;
-      color:#fff;
-      width:20%;
-      text-align: center;
+
+    width:100%;
+    border-bottom:1px solid #aaa;
 `;
+
+export const DateNum =  styled.span
+`
+      background:#fff;
+      position:relative;
+      top:10px;
+      right:1px;
+      display:table;
+      margin:0 auto;
+      padding:0 10px;
+`;
+
 export const ThingBlock = styled.ul
 `
-    width:80%;
+    margin-top:10px;
+    width:100%;
 `
 export const Thing = styled.li
-`
+`   
+    padding:7px 0;
     font-family:微軟正黑體;
 `;

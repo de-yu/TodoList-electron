@@ -11,6 +11,7 @@ type Note
  type DayThing{
   isFinish:Boolean
   thing:String
+  date:String
   _id:String
 } 
 
@@ -25,8 +26,8 @@ type Query {
   getComingNotes(date: [String]): [DayThing]
   getCalendar:[String]
   getNote:Note
-  getFinishThing:[DayThing]
-  getWaitingThing:[DayThing]
+  getFinishThing(year: String):[DayThing]
+  getWaitingThing(year:String):[DayThing]
 }
 
 type Mutation {
