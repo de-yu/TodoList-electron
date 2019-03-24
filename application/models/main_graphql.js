@@ -24,7 +24,7 @@ var rootValue = {
   },
   getFinishThing:function({year}){
         return new Promise(function(resolve , reject){
-        Calendar.getYearThingId(year).then(function(allThingId){
+        Calendar.getYearThingId({year:year}).then(function(allThingId){
             DayThing.getFinishThing({id:allThingId}).then(function(finishThing){
                 resolve(finishThing);
             });
