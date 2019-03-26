@@ -11,28 +11,26 @@ export const FinishBoard = styled.div
   box-shadow:0px 1px 3px 1px #bbb; 
 `;
 
-export const Tab = styled.div
+export const BoardHeader = styled.div
+`
+    background:#444;
+    width:100%;
+    margin:0 auto;
+    margin-bottom:30px;
+    height:60px;
+`;
+
+export const  Header = styled.p
 `
     width:90%;
-    margin:0 auto;
-    height:60px;
-    display:flex;
-`;
-
-export const  TabMark = styled.p
-`
     line-height:60px;
-    flex-grow:1;
-    text-align: center;
-    color:#888;
+    color:#eee;
+    font-size:1.5em;
+    margin:0 auto;
+    font-family:微軟正黑體;
 `;
 
-export const TabMarkActive = styled(TabMark)
-`
-    border-bottom:2px solid #555;
-`;
-
-export const TabContent = styled.div
+export const Content = styled.div
 `
     margin-top:15px; 
 `;
@@ -63,11 +61,46 @@ export const DateNum =  styled.span
 
 export const ThingBlock = styled.ul
 `
-    margin-top:10px;
+    margin-top:30px;
     width:100%;
 `
-export const Thing = styled.li
+export const ThingItem = styled.li
 `   
-    padding:7px 0;
+    margin-top:20px;
+    margin-bottom:20px;
     font-family:微軟正黑體;
+    display:flex;
+`;
+
+export const ThingMarker = styled.div
+`
+    position:relative;
+    width:18px;
+    height:18px;
+    border:1px solid #555;
+    margin-right:10px;
+   
+    ::before
+    {   
+        margin-top: 2px;
+        margin-left:2px;
+        background:#555;
+        content:'';
+        width:14px;
+        height:14px;
+        display:block;
+    }
+`;
+
+
+export const Thing = styled.p
+`
+    line-height:20px;
+`
+
+export const Footer = styled.div
+`
+    width:90%;
+    margin:0 auto;
+    height:60px;
 `;

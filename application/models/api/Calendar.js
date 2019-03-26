@@ -22,13 +22,13 @@ export default class Calendar
         });
 
     }
-    static getYearThingId({year})
+    static geAllThingId()
     {
         CalendarCon.loadDatabase();
 
         return new Promise(function (resolve, reject)
         {
-            CalendarCon.find({date: new RegExp(year)} , {thing:1}).sort({date: 1}).exec(function (err, docs)
+            CalendarCon.find().sort({date: 0}).exec(function (err, docs)
             {
                 var allThingId = _.map(docs, 'thing');
                 allThingId = _.flatten(allThingId); 

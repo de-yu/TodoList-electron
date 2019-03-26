@@ -13,18 +13,18 @@ var rootValue = {
   getThing:DayThing.getThing,
   getCalendar:Calendar.getCalendar,
   
-  getWaitingThing:function({year}){
+  getWaitingThing:function(){
         return new Promise(function(resolve , reject){
-        Calendar.getYearThingId({year:year}).then(function(allThingId){
+        Calendar.geAllThingId().then(function(allThingId){
             DayThing.getWaitingThing({id:allThingId}).then(function(waitingThing){
                 resolve(waitingThing);
             });
         });
     });
   },
-  getFinishThing:function({year}){
+  getFinishThing:function(){
         return new Promise(function(resolve , reject){
-        Calendar.getYearThingId({year:year}).then(function(allThingId){
+        Calendar.geAllThingId().then(function(allThingId){
             DayThing.getFinishThing({id:allThingId}).then(function(finishThing){
                 resolve(finishThing);
             });
