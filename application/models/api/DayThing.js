@@ -12,7 +12,7 @@ export default class DayThing{
             })
         })
     }
-    static getWaitingThing ({id})
+    static getWaitThing ({id})
     {
         thing.loadDatabase();
 

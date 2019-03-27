@@ -75,12 +75,11 @@ export const ThingItem = styled.li
 export const ThingMarker = styled.div
 `
     position:relative;
-    width:18px;
+    min-width:18px;
     height:18px;
     border:1px solid #555;
     margin-right:10px;
-   
-    ::before
+    ::after
     {   
         margin-top: 2px;
         margin-left:2px;
@@ -96,6 +95,7 @@ export const ThingMarker = styled.div
 export const Thing = styled.p
 `
     line-height:20px;
+
 `
 
 export const Footer = styled.div

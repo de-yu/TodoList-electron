@@ -13,11 +13,11 @@ var rootValue = {
   getThing:DayThing.getThing,
   getCalendar:Calendar.getCalendar,
   
-  getWaitingThing:function(){
+  getWaitThing:function(){
         return new Promise(function(resolve , reject){
         Calendar.geAllThingId().then(function(allThingId){
-            DayThing.getWaitingThing({id:allThingId}).then(function(waitingThing){
-                resolve(waitingThing);
+            DayThing.getWaitThing({id:allThingId}).then(function(waitThing){
+                resolve(waitThing);
             });
         });
     });

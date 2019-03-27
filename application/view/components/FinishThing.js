@@ -2,6 +2,7 @@
 import React from 'react';
 import {Main} from './StyleComponent/Main'
 import {FinishBoard, BoardHeader, Header, Content, ContentBlock, Date, DateNum, ThingBlock,ThingMarker , ThingItem, Thing , Footer} from './StyleComponent/FinishThing'
+
 import ql from "./../../../application/models/main_graphql"
 
 export default class FinishThing extends React.Component{
@@ -20,7 +21,7 @@ export default class FinishThing extends React.Component{
                     _id
                 }
         }`);
-            console.log(data);
+
         data = data['data']['getFinishThing'];
         var groupData = _.groupBy(data, function (value){
             return value.date;
@@ -33,9 +34,10 @@ export default class FinishThing extends React.Component{
     render (){
         const element = [];
 
-        _.forEach(this.state.data, function (value, key){
+        var date_keys = Object.keys(this.state.data).sort().reverse();
+        _.forEach(date_keys, function (key){
 
-            var thingList = value.map(function (thing){
+            var thingList = this.state.data[key].map(function (thing){
                 return (
                 <ThingItem key={thing._id} >
                     <ThingMarker></ThingMarker>

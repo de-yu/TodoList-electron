@@ -55,8 +55,8 @@ export default class NavDate extends React.PureComponent {
         var months = [];
         var months_keys = Object.keys(value_1).sort();
          for (var i = 0; i < months_keys.length; i++) {
-             var value_2 = value_1[months_keys[i]]
-             var days = []
+             var value_2 = value_1[months_keys[i]];
+             var days = [];
              _.forEach( value_2 , function(value_3){
                  days.push(<Day id={value_3} key={value_3} draggable="true" onDragStart={this.drag.bind(this)}><DayLink id={value_3} to={"/DayThing/"+value_3.replace(/-/g , "/")}>{value_3.substring(8,10)}</DayLink></Day>)
             }.bind(this))
