@@ -21,18 +21,21 @@ export const DayThingBoardTop = styled.div
 `;
 export const DayThingAdd = styled.div
 `
-width:50%;
-text-align: center;
-color:#fff;
-line-height:45px;
+    width:50%;
+    text-align: center;
+    color:#fff;
+    line-height:45px;
+    &:hover{
+      cursor:pointer;
+    }
 `;
 
 export const DayThingDel = styled.div
 `
-width:50%;
-text-align: center;
-color:#fff;
-line-height:45px;
+    width:50%;
+    text-align: center;
+    color:#fff;
+    line-height:45px;
 `;
 
 export const DayThingBoardEdit = styled.ul
@@ -60,5 +63,6 @@ export const DayThingText = styled.div
     width:90%;
     min-height:16px;
     outline:0;
+    line-height:1.4em;
     
 `;
