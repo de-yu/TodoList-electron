@@ -46,9 +46,9 @@ css - style-component
         npm run package
 
 
-##執行畫面
+## 執行畫面
 
-![Alt text](./img/readme.png)
+! [Alt text](./img/readme.png)
 
 ## Built With
 
