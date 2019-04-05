@@ -13,7 +13,7 @@ export default class NavBar extends React.Component
     return (
             
    <Nav>
-      <Title> Todo </Title>
+      <Title> TodoList </Title>
       <NavList>
         <NavItem><StyledLink to="/Note">記事本</StyledLink></NavItem>
         <NavItem><StyledLink to="/WaitThing">待完成</StyledLink></NavItem>
