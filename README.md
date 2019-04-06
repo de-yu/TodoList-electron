@@ -48,7 +48,7 @@ css - style-component
 
 ## 執行畫面
 
-! [Alt text](https://raw.githubusercontent.com/de-yu/TodoList-electron/master/readmeImg/readme.PNG)
+![執行畫面](https://raw.githubusercontent.com/de-yu/TodoList-electron/master/readmeImg/readme.PNG)
 
 ## Built With
 
