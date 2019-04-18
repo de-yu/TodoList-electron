@@ -94,7 +94,7 @@ export default class DayThing extends React.Component
                          <DayThingAdd onClick = {this.addThing.bind(this)}>
                             NEW
                          </DayThingAdd>
-                         <DayThingDel onDrop={this.drop.bind(this)} onDragOver={this.allowDrop.bind(this)}>
+                         <DayThingDel onDrop={this.drop.bind(this)} onDragOver={this.allowDrop.bind(this)} title="拖曳事項刪除">
                             DEL
                          </DayThingDel>
                       </DayThingBoardTop>

@@ -11,14 +11,19 @@ export default class NavDate extends React.PureComponent {
     }
     async componentDidMount (){
         var date = await this.props.getDate();
-        console.log(date);
         this.props.setDate(date);
     }
     newDate (){
-        this.props.newDateAsync(this.refs.dateInput.value).then(function(data){
-            console.log(data);
-        })
-        this.props.newDate(this.refs.dateInput.value);
+        
+        var dateInput =  this.refs.dateInput.value;
+        this.refs.dateInput.value = "";
+        if(dateInput.match(/[\d]{4}-[\d]{2}-[\d]{2}/))
+        {
+            this.props.newDateAsync(dateInput).then(function(data){
+                console.log(data);
+            }) 
+            this.props.newDate(dateInput);
+        }
     }
     allowDrop (ev){
         ev.preventDefault();
@@ -58,12 +63,27 @@ export default class NavDate extends React.PureComponent {
              var value_2 = value_1[months_keys[i]];
              var days = [];
              _.forEach( value_2 , function(value_3){
-                 days.push(<Day id={value_3} key={value_3} draggable="true" onDragStart={this.drag.bind(this)}><DayLink id={value_3} to={"/DayThing/"+value_3.replace(/-/g , "/")}>{value_3.substring(8,10)}</DayLink></Day>)
+                 days.push(
+                         <Day id={value_3} key={value_3} draggable="true" onDragStart={this.drag.bind(this)}>
+                            <DayLink id={value_3} to={"/DayThing/"+value_3.replace(/-/g , "/")}>{value_3.substring(8,10)}</DayLink>
+                         </Day>)
             }.bind(this))
-            months.push(<Month key={months_keys[i]}><MonthNum>{months_keys[i]}</MonthNum><MonthDays>{days}</MonthDays></Month>)       
+            months.push(
+            <Month key={months_keys[i]}>
+                    <MonthNum>
+                        <Num>{months_keys[i]}</Num>
+                    </MonthNum>
+                <MonthDays>
+                {days}
+                </MonthDays>
+            </Month>)       
          }
          
-        cal.push(<Year key={key_1}><YearNum>{key_1}</YearNum><AllMonth>{months}</AllMonth></Year>)
+        cal.push(
+            <Year key={key_1}>
+                <YearNum>{key_1}</YearNum>
+                <AllMonth>{months}</AllMonth>
+            </Year>)
         }.bind(this))
     }
       return(
@@ -71,10 +91,10 @@ export default class NavDate extends React.PureComponent {
     <NavCalendar >
       <DateControl >
       <DateInput ref="dateInput" type="date" />
-        <NewDateButton onClick={ this.newDate.bind(this) } >
+        <NewDateButton onClick={ this.newDate.bind(this) } title="選好日期按新增" >
         NEW
         </NewDateButton>
-        <DelDateButton  onDrop={this.drop.bind(this)} onDragOver={this.allowDrop.bind(this)}>
+        <DelDateButton  onDrop={this.drop.bind(this)} onDragOver={this.allowDrop.bind(this)}  title="拖曳日期刪除">
         DEL
         </DelDateButton>
       </DateControl>

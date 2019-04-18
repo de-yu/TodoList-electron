@@ -34,6 +34,10 @@ export const NewDateButton = styled.div
   width:22%;
   text-align: center;
   color:#fff;
+
+  &:hover{
+    cursor:pointer;
+  }
 `;
 
 export const DelDateButton = styled.div
@@ -67,6 +71,7 @@ export const YearNum = styled.div
   color:#fff;
   font-size:2.5em;
   margin-left:5%;
+  margin-bottom:15px;
 `;
 
 export const AllMonth = styled.div
@@ -87,19 +92,21 @@ export const Month = styled.div
 export const MonthNum = styled.div
 `
   background:#555;
-min-width:1.2em;
+  min-width:1.2em;
   width:15%;
   height:inherit;
   text-align: center;
   color:#fff;
-  font-size:1.8em;
   display:flex;
-
+  border-right:3px solid #fff;
+  padding-right:10px;
 `;
 
 export const Num = styled.span
 `
  margin: auto;
+line-height:100%;
+  font-size:1.3em;
 `;
 
 export const MonthDays = styled.ul
@@ -109,7 +116,7 @@ export const MonthDays = styled.ul
   list-style-type:none;
   -webkit-flex-wrap: wrap;
   flex-wrap: wrap;
-  border-left:5px solid #fff;
+
 `;
 
 export const Day = styled.li
