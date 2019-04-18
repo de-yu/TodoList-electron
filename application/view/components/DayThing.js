@@ -50,25 +50,29 @@ export default class DayThing extends React.Component
         /*var focusElement = this.props.data[this.props.data.length-1]._id;
         this.refs[focusElement].focus();*/
     }
+    dragenter(ev)
+    {
+       console.log(ev.dataTransfer.types[1]);
+    }
     allowDrop(ev)
      {
-       console.log("allow");
-             ev.preventDefault();
-              ev.dataTransfer.dropEffect = 'move';
+        ev.preventDefault();
+        ev.dataTransfer.dropEffect = 'move';
      }
      drag(ev)
      {
-       console.log("drag");
+       ev.dataTransfer.effectAllowed = 'move';
        var id = ev.target.id.replace("-item" , "");
        ev.dataTransfer.setData("id",id);
+       console.log( ev.dataTransfer);
+                                           ev.dataTransfer.setData('text/html',"123456");
      }
      itemDrop(ev)
      {  
-              var id = ev.target.id;
-
+       var id = ev.target.id;
        console.log(id);
-              console.log(ev.dataTransfer.getData("id"))
-       //this.props.dragSortDayThing(ev.dataTransfer.getData("id") , ev.dataTransfer.getData("target"));
+       console.log(ev.dataTransfer.getData('text/html'));
+       //this.props.dragSortDayThing(ev.dataTransfer.getData("id") , id);
      }
      drop(ev)
      {
@@ -105,7 +109,7 @@ export default class DayThing extends React.Component
 
                           return (
                              <DayThingItem id={item._id+ this.props.componentName.item} key={item._id+ this.props.componentName.item} 
-                                draggable="true" onDragStart={this.drag.bind(this)} onDrop={this.itemDrop.bind(this)} onDragOver={this.allowDrop.bind(this)} >
+                                draggable="true" onDragStart={this.drag.bind(this)} onDragEnter={this.dragenter.bind(this)} onDrop={this.itemDrop.bind(this)} onDragOver={this.allowDrop.bind(this) } >
                               <DayThingIsFinish id ={item._id+ this.props.componentName.isFinish}  ref={item._id+ this.props.componentName.isFinish}  type="checkbox" defaultChecked={item.isFinish} onChange={this.updateThingDB.bind(this)} />
                               <DayThingText id={item._id} ref={item._id} contentEditable="true" suppressContentEditableWarning="true" onInput={this.updateThingDB.bind(this)} dangerouslySetInnerHTML={this.createMarkup(item.thing)}>      
                               </DayThingText>

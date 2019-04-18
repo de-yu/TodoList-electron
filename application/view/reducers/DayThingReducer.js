@@ -7,13 +7,17 @@
         state = action.data;
         return state;
     case "DRAGSORT_DAYTHING":
-      var moveIndex = _.findIndex(state , {_id:action.data.moveid});
-      var targetIndex = _.findIndex(state , {_id:action.data.targetid});
       
-      var target = state[targetIndex]
-     var newState =  state.splice(targetIndex , 0 , state[moveIndex])
+      var moveIndex = _.findIndex(state , {_id:action.data.moveId});
+      var targetIndex = _.findIndex(state , {_id:action.data.targetId});
+
+      state.splice(targetIndex , 0 , state[moveIndex])
       
-      return newState;
+      var movechange = Math.min(moveIndex - targetIndex , 1);
+      movechange = Math.max(movechange , -1);
+      state.splice(moveIndex+movechange , 1);
+
+      return state;
     case "ADD_DAYTHING":
         return [...state , {isFinish:false , text:"" , _id:action.data.id}];
     case "DEL_DAYTHING":
