@@ -15,6 +15,11 @@ const setDayThing = (setDayThing) =>({
   data: setDayThing
 });
 
+const dragSortDayThing = (dragSortDayThing) => ({
+  type:"DRAGSORT_DAYTHING" , 
+  data:dragSortDayThing
+})
+
 const updateDayThing = (updateDayThing) => ({
     type:"UPDATE_DAYTHING" , 
     data:updateDayThing
@@ -85,7 +90,10 @@ function updateDayThingAsync(id ,isFinish ,  thing)
         return data;
     }
 }
-
+function updateDayThingSort(date , id)
+{
+  
+}
 function delDayThingAsync(date , id)
 {
     return async function()
@@ -103,4 +111,4 @@ function delDayThingAsync(date , id)
     }
 }
 
-export {addDayThing , delDayThing , setDayThing,updateDayThing  ,  getDayThingIdAsync ,getDayThingAsync ,addDayThingAsync , updateDayThingAsync , delDayThingAsync}
+export {addDayThing , delDayThing , setDayThing,updateDayThing  ,  dragSortDayThing , getDayThingIdAsync ,getDayThingAsync ,addDayThingAsync , updateDayThingAsync , delDayThingAsync}

@@ -1,7 +1,7 @@
 
 import React from "react";
 import DayThing from '../components/DayThing';
-import {addDayThing, delDayThing, setDayThing, updateDayThing, getDayThingIdAsync, getDayThingAsync, addDayThingAsync, updateDayThingAsync, delDayThingAsync} from '../actions/DayThing'
+import {addDayThing, delDayThing, setDayThing, updateDayThing, dragSortDayThing ,getDayThingIdAsync, getDayThingAsync, addDayThingAsync, updateDayThingAsync, delDayThingAsync} from '../actions/DayThing'
 import {connect} from 'react-redux'
 
 
@@ -25,6 +25,9 @@ const mapDispatchToProps = (dispatch, props) => ({
         },
         updateDayThing: function (id, isFinish ,thing){
             dispatch(updateDayThing({id: id,isFinish:isFinish, thing: thing}))
+        },
+        dragSortDayThing:function(moveId , targetId){
+          dispatch(dragSortDayThing({moveId :moveId , targetId:targetId}))
         },
         getDayThingIdAsync: function (date){
             return dispatch(getDayThingIdAsync(date))

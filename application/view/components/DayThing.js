@@ -54,15 +54,22 @@ export default class DayThing extends React.Component
      {
        console.log("allow");
              ev.preventDefault();
+              ev.dataTransfer.dropEffect = 'move';
      }
-
      drag(ev)
      {
        console.log("drag");
-       var delid = ev.target.id.replace("-item" , "");
-       ev.dataTransfer.setData("id",delid);
+       var id = ev.target.id.replace("-item" , "");
+       ev.dataTransfer.setData("id",id);
      }
+     itemDrop(ev)
+     {  
+              var id = ev.target.id;
 
+       console.log(id);
+              console.log(ev.dataTransfer.getData("id"))
+       //this.props.dragSortDayThing(ev.dataTransfer.getData("id") , ev.dataTransfer.getData("target"));
+     }
      drop(ev)
      {
 
@@ -97,7 +104,8 @@ export default class DayThing extends React.Component
                         this.props.data.map(function(item , index){
 
                           return (
-                             <DayThingItem id={item._id+ this.props.componentName.item} key={item._id+ this.props.componentName.item} draggable="true" onDragStart={this.drag.bind(this)}>
+                             <DayThingItem id={item._id+ this.props.componentName.item} key={item._id+ this.props.componentName.item} 
+                                draggable="true" onDragStart={this.drag.bind(this)} onDrop={this.itemDrop.bind(this)} onDragOver={this.allowDrop.bind(this)} >
                               <DayThingIsFinish id ={item._id+ this.props.componentName.isFinish}  ref={item._id+ this.props.componentName.isFinish}  type="checkbox" defaultChecked={item.isFinish} onChange={this.updateThingDB.bind(this)} />
                               <DayThingText id={item._id} ref={item._id} contentEditable="true" suppressContentEditableWarning="true" onInput={this.updateThingDB.bind(this)} dangerouslySetInnerHTML={this.createMarkup(item.thing)}>      
                               </DayThingText>

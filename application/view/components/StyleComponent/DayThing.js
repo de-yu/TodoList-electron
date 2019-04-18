@@ -49,6 +49,7 @@ export const DayThingItem = styled.li
     display:flex;
     margin:0 auto;
     margin-top:15px;
+    z-index:3;
 `;
 
 export const DayThingIsFinish = styled.input
@@ -60,5 +61,5 @@ export const DayThingText = styled.div
     width:90%;
     min-height:16px;
     outline:0;
-    
+    z-index:1;
 `;
