@@ -39,6 +39,7 @@ type Mutation {
   newThing(date: String): DayThing
   delThing(date: String , id: ID!): Int
   updateThing(id: ID! ,isFinish:Boolean, text:String):Int
+  updateThingSort(date: String , id: [ID!]): Int
 }
 
 `

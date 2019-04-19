@@ -98,7 +98,16 @@ export default class Calendar
           })
         })
     }
-    
+    static updateDayThingSort({date , thingId})
+    {
+        CalendarCon.loadDatabase();  
+        
+        return new Promise(function(resolve , reject){
+           CalendarCon.update({date:date} , {$set: {thing:thingId}} , {} , function(err , numReplaced){
+                resolve(numReplaced);
+            })
+        })
+    }
     static delDayThingId({date , thingId})
     {
         CalendarCon.loadDatabase();

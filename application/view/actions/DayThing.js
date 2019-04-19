@@ -92,7 +92,19 @@ function updateDayThingAsync(id ,isFinish ,  thing)
 }
 function updateDayThingSort(date , id)
 {
-  
+  return async function(){
+        var data = await ql(
+        `
+          mutation updateThingSort($date:String ,  $id: [ID!])
+          {
+            updateThingSort(date:$date , id:$id)
+          }
+        `
+        ,{date:date , id:id});
+     
+     return data;
+  }
+
 }
 function delDayThingAsync(date , id)
 {

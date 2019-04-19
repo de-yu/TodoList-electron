@@ -56,7 +56,8 @@ var rootValue = {
           });
       });
   },
-  updateThing:DayThing.updateThing
+  updateThing:DayThing.updateThing,
+  updateThingSort:DayThing.updateDayThingSort
 };
 
 export default function ql(query , values)
