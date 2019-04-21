@@ -1,29 +1,33 @@
 
+/* global _ */
+
 import React from 'react';
 import {Main} from './StyleComponent/Main'
-import {DayThingBoard , DayThingBoardTop, DayThingAdd , DayThingDel , DayThingBoardEdit , DayThingItem , DayThingIsFinish , DayThingText} from './StyleComponent/DayThing'
+import {DayThingBoard , DayThingBoardTop, DayThingAdd , DayThingDel , DayThingBoardEdit , DayThingItem ,DayThingIsFinishLabel, DayThingIsFinish , DayThingIsFinishMark , DayThingText} from './StyleComponent/DayThing'
 
 export default class DayThing extends React.Component
 {
   constructor(props) {
-    super(props)
+        super(props)
+        this.temp = {dragid:"" , targetid:""};
+        this.thingDate = "2019-03-13";  
     }
     async componentDidMount ()
     {
         
-      var thingDate = _.join([this.props.match.params.Year , this.props.match.params.Month , this.props.match.params.Day] , "-");
-      var id = await this.props.getDayThingIdAsync(thingDate);
+      //this.thingDate = _.join([this.props.match.params.Year , this.props.match.params.Month , this.props.match.params.Day] , "-");
+      var id = await this.props.getDayThingIdAsync(this.thingDate);
       var thing = await this.props.getDayThingAsync(id);
 
       this.props.setDayThing(thing);
+
 
     }
     addThing()
     {
                 
-        var thingDate = _.join([this.props.match.params.Year , this.props.match.params.Month , this.props.match.params.Day] , "-");    
         this.updateThingProps();
-        this.props.addDayThingAsync(thingDate).then(function (newdoc){
+        this.props.addDayThingAsync(this.thingDate).then(function (newdoc){
             this.props.addDayThing(newdoc._id);
         }.bind(this))
     }
@@ -47,12 +51,21 @@ export default class DayThing extends React.Component
     }
     componentDidUpdate()
     {
-        /*var focusElement = this.props.data[this.props.data.length-1]._id;
-        this.refs[focusElement].focus();*/
+        console.log(this.props.data);
+        if(this.props.action=="ADD_DAYTHING")
+        {
+            var focusElement = this.props.data[this.props.data.length-1]._id;
+            (focusElement);
+            this.refs[focusElement].focus();
+        }
     }
     dragenter(ev)
     {
-       console.log(ev.dataTransfer.types[1]);
+        if(ev.target.id!=="")
+        {
+            this.temp.targetid =ev.target.id.replace("-item" , "");
+            this.temp.targetid = this.temp.targetid.replace("-isfinish" , "");
+        }
     }
     allowDrop(ev)
      {
@@ -62,29 +75,28 @@ export default class DayThing extends React.Component
      drag(ev)
      {
        ev.dataTransfer.effectAllowed = 'move';
-       var id = ev.target.id.replace("-item" , "");
-       ev.dataTransfer.setData("id",id);
-       console.log( ev.dataTransfer);
-                                           ev.dataTransfer.setData('text/html',"123456");
+       this.temp.dragid = ev.target.id.replace("-item" , "");
      }
      itemDrop(ev)
      {  
-       var id = ev.target.id;
-       console.log(id);
-       console.log(ev.dataTransfer.getData('text/html'));
-       //this.props.dragSortDayThing(ev.dataTransfer.getData("id") , id);
+       console.log(this.temp);
+       this.props.dragSortDayThing(this.temp.dragid , this.temp.targetid);
+       
+       var ids = _.map(this.props.data, '_id');
+       
+       this.props.updateSortDayThingAsync(this.thingDate , ids).then(function(data){
+           console.log(data);
+       })
      }
-     drop(ev)
+    deleteDrop(ev)
      {
+        ev.preventDefault();
+        this.updateThingProps();
 
-             ev.preventDefault();
-             this.updateThingProps();
-             
-             var id=ev.dataTransfer.getData("id");
-             this.props.delDayThingAsync(_.join([this.props.match.params.Year , this.props.match.params.Month , this.props.match.params.Day] , "-") , id).then(function(data){
-                console.log(data);
-                this.props.delDayThing(id);
-             }.bind(this))
+        var id= this.temp.dragid;
+        this.props.delDayThingAsync(this.thingDate , id).then(function(data){
+           this.props.delDayThing(id);
+        }.bind(this))
      }
      createMarkup(thing)
      {
@@ -98,7 +110,7 @@ export default class DayThing extends React.Component
                          <DayThingAdd onClick = {this.addThing.bind(this)}>
                             NEW
                          </DayThingAdd>
-                         <DayThingDel onDrop={this.drop.bind(this)} onDragOver={this.allowDrop.bind(this)} title="拖曳事項刪除">
+                         <DayThingDel onDrop={this.deleteDrop.bind(this)} onDragOver={this.allowDrop.bind(this)} title="拖曳事項刪除">
                             DEL
                          </DayThingDel>
                       </DayThingBoardTop>
@@ -109,8 +121,11 @@ export default class DayThing extends React.Component
 
                           return (
                              <DayThingItem id={item._id+ this.props.componentName.item} key={item._id+ this.props.componentName.item} 
-                                draggable="true" onDragStart={this.drag.bind(this)} onDragEnter={this.dragenter.bind(this)} onDrop={this.itemDrop.bind(this)} onDragOver={this.allowDrop.bind(this) } >
-                              <DayThingIsFinish id ={item._id+ this.props.componentName.isFinish}  ref={item._id+ this.props.componentName.isFinish}  type="checkbox" defaultChecked={item.isFinish} onChange={this.updateThingDB.bind(this)} />
+                                draggable="true" onDragStart={this.drag.bind(this)} onDragEnter={this.dragenter.bind(this)} onDrop={this.itemDrop.bind(this)} onDragOver={this.allowDrop.bind(this) } > 
+                                <DayThingIsFinishLabel htmlFor={item._id+ this.props.componentName.isFinish}>
+                                <DayThingIsFinish id ={item._id+ this.props.componentName.isFinish}  ref={item._id+ this.props.componentName.isFinish}  type="checkbox" defaultChecked={item.isFinish} onChange={this.updateThingDB.bind(this)} />
+                                <DayThingIsFinishMark></DayThingIsFinishMark>
+                              </DayThingIsFinishLabel>
                               <DayThingText id={item._id} ref={item._id} contentEditable="true" suppressContentEditableWarning="true" onInput={this.updateThingDB.bind(this)} dangerouslySetInnerHTML={this.createMarkup(item.thing)}>      
                               </DayThingText>
                             </DayThingItem>

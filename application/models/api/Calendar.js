@@ -91,19 +91,19 @@ export default class Calendar
                
             docs[0]['thing'].push(thingId)
             var newId = docs[0]['thing'];
-
+            console.log(newId);
            CalendarCon.update({date:date} , {$set: {thing:newId}} , {} , function(err , numReplaced){
                 resolve(numReplaced);
             })
           })
         })
     }
-    static updateDayThingSort({date , thingId})
+    static updateDayThingSort({date , id})
     {
         CalendarCon.loadDatabase();  
-        
+        console.log(date , id)
         return new Promise(function(resolve , reject){
-           CalendarCon.update({date:date} , {$set: {thing:thingId}} , {} , function(err , numReplaced){
+           CalendarCon.update({date:date} , {$set: {thing:id}} , {} , function(err , numReplaced){
                 resolve(numReplaced);
             })
         })

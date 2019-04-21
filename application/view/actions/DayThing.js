@@ -123,4 +123,4 @@ function delDayThingAsync(date , id)
     }
 }
 
-export {addDayThing , delDayThing , setDayThing,updateDayThing  ,  dragSortDayThing , getDayThingIdAsync ,getDayThingAsync ,addDayThingAsync , updateDayThingAsync , delDayThingAsync}
+export {addDayThing , delDayThing , setDayThing,updateDayThing  ,  dragSortDayThing , updateDayThingSort ,getDayThingIdAsync ,getDayThingAsync ,addDayThingAsync , updateDayThingAsync , delDayThingAsync}
