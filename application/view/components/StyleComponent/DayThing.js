@@ -48,37 +48,39 @@ export const DayThingBoardEdit = styled.ul
 
 export const DayThingItem = styled.li
 `
-    width:95%;
+    position:relative;
+    left:5%;
+    width:50%;
     display:flex;
-    margin:0 auto;
-    margin-top:15px;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
+    padding:20px 0px;
+    border-bottom:1px solid #aaa;
+
+    :nth-child(1)
+    {
+        margin-top:30px;
+    }
 `;
 
 export const DayThingIsFinishLabel = styled.label
 `
-
+    position:relative;
 `;
 
 export const DayThingIsFinish = styled.input
 `
-    
+    display:none;
     :checked ~ span::after {
         display: block;
     }
 `;
 export const DayThingIsFinishMark = styled.span
 `
+    background:#fff;
     position: absolute;
-    left:9px;
     min-width:18px;
     height:18px;
     border:1px solid #555;
-    margin-right:10px;
-
+    border-radius:2px;
     ::after
     {         
         margin-top: 2px;
@@ -93,9 +95,11 @@ export const DayThingIsFinishMark = styled.span
 `;
 export const DayThingText = styled.div
 `
+    position:relative;
+    margin-left:34px;
     width:90%;
     min-height:16px;
     outline:0;
     line-height:1.4em;
-
+    color:#555;
 `;
