@@ -63,8 +63,22 @@ export default class DayThing extends React.Component
     {
         if(ev.target.id!=="")
         {
+
             this.temp.targetid =ev.target.id.replace("-item" , "");
             this.temp.targetid = this.temp.targetid.replace("-isfinish" , "");
+                        console.log(this.temp.targetid);
+            var a = document.querySelector("#"+this.temp.targetid + "-item");
+            var className = a.getAttribute("class")
+            a.setAttribute("class" , className + " in-drag ");
+        }
+    }
+    dragleave(ev)
+    {
+        if(ev.target.id!=="")
+        {
+            var a = document.querySelector("#"+ev.target.id);
+            var className = a.getAttribute("class")
+            a.setAttribute("class" , className.replace(/ in-drag /g , ""));
         }
     }
     allowDrop(ev)
@@ -76,6 +90,8 @@ export default class DayThing extends React.Component
      {
        ev.dataTransfer.effectAllowed = 'move';
        this.temp.dragid = ev.target.id.replace("-item" , "");
+
+
      }
      itemDrop(ev)
      {  
@@ -121,7 +137,7 @@ export default class DayThing extends React.Component
 
                           return (
                              <DayThingItem id={item._id+ this.props.componentName.item} key={item._id+ this.props.componentName.item} 
-                                draggable="true" onDragStart={this.drag.bind(this)} onDragEnter={this.dragenter.bind(this)} onDrop={this.itemDrop.bind(this)} onDragOver={this.allowDrop.bind(this) } > 
+                                draggable="true" onDragStart={this.drag.bind(this)} onDragEnter={this.dragenter.bind(this)} onDrop={this.itemDrop.bind(this)} onDragOver={this.allowDrop.bind(this) } onDragLeave = {this.dragleave.bind(this)} omDragEnd={this.dragleave.bind(this)}> 
                                 <DayThingIsFinishLabel htmlFor={item._id+ this.props.componentName.isFinish}>
                                 <DayThingIsFinish id ={item._id+ this.props.componentName.isFinish}  ref={item._id+ this.props.componentName.isFinish}  type="checkbox" defaultChecked={item.isFinish} onChange={this.updateThingDB.bind(this)} />
                                 <DayThingIsFinishMark></DayThingIsFinishMark>

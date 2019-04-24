@@ -50,10 +50,9 @@ export const DayThingItem = styled.li
 `
     position:relative;
     left:5%;
-    width:50%;
+    width:70%;
     display:flex;
-    padding:20px 0px;
-    border-bottom:1px solid #aaa;
+    padding:18px 0px;
 
     :nth-child(1)
     {
@@ -97,7 +96,6 @@ export const DayThingText = styled.div
 `
     position:relative;
     margin-left:34px;
-    width:90%;
     min-height:16px;
     outline:0;
     line-height:1.4em;
