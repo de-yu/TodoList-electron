@@ -66,7 +66,6 @@ export default class DayThing extends React.Component
 
             this.temp.targetid =ev.target.id.replace("-item" , "");
             this.temp.targetid = this.temp.targetid.replace("-isfinish" , "");
-                        console.log(this.temp.targetid);
             var a = document.querySelector("#"+this.temp.targetid + "-item");
             var className = a.getAttribute("class")
             a.setAttribute("class" , className + " in-drag ");
@@ -74,11 +73,11 @@ export default class DayThing extends React.Component
     }
     dragleave(ev)
     {
-        if(ev.target.id!=="")
+        if(ev.target.id.match("-item").length>0)
         {
             var a = document.querySelector("#"+ev.target.id);
             var className = a.getAttribute("class")
-            a.setAttribute("class" , className.replace(/ in-drag /g , ""));
+            a.setAttribute("class" , className.replace(/in-drag/g , ""));
         }
     }
     allowDrop(ev)
@@ -96,6 +95,10 @@ export default class DayThing extends React.Component
      itemDrop(ev)
      {  
        console.log(this.temp);
+            var a = document.querySelector("#"+this.temp.targetid + "-item");
+            var className = a.getAttribute("class")
+            console.log(className)
+            a.setAttribute("class" , className.replace(/in-drag/g , ""));
        this.props.dragSortDayThing(this.temp.dragid , this.temp.targetid);
        
        var ids = _.map(this.props.data, '_id');
