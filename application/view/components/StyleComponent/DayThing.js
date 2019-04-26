@@ -74,30 +74,38 @@ export const DayThingIsFinish = styled.input
 `;
 export const DayThingIsFinishMark = styled.span
 `
-    background:#fff;
+    background:#2196F3;
     position: absolute;
     min-width:18px;
     height:18px;
-    border:1px solid #555;
     border-radius:2px;
+
     ::after
     {         
-        margin-top: 2px;
-        margin-left:2px;
-        background:#555;
+        margin-top:1px;
+        margin-left:5px;
+        background:#2196F3;
         content:'';
-        width:14px;
-        height:14px;
+        width:6px;
+        height:10px;
         display:none;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
     }
 
 `;
-export const DayThingText = styled.div
+export const DayThingText = styled.textarea
 `
     position:relative;
+    width: 90%;
     margin-left:34px;
     min-height:16px;
     outline:0;
+    border:0;
+    resize:none;
     line-height:1.4em;
     color:#555;
 `;

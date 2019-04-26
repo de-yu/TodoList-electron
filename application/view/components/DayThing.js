@@ -4,12 +4,14 @@
 import React from 'react';
 import {Main} from './StyleComponent/Main'
 import {DayThingBoard , DayThingBoardTop, DayThingAdd , DayThingDel , DayThingBoardEdit , DayThingItem ,DayThingIsFinishLabel, DayThingIsFinish , DayThingIsFinishMark , DayThingText} from './StyleComponent/DayThing'
-
+import $ from "jquery";
+import autosize from "autosize";
+import striptags from 'striptags';
 export default class DayThing extends React.Component
 {
   constructor(props) {
         super(props)
-        this.temp = {dragid:"" , targetid:""};
+        this.temp = {dragid:"" , targetid:"" , targetclass:""};
         this.thingDate = "2019-03-13";  
     }
     async componentDidMount ()
@@ -41,11 +43,11 @@ export default class DayThing extends React.Component
     }
     updateThingDB(event)
     {  
-      var id = event.target.id.split("-")[0];
-
+        var id = event.target.id.split("-")[0];
+        var text = striptags(this.refs[id].value);
         this.props.updateDayThingAsync(id ,
         this.refs[id + this.props.componentName.isFinish].checked,
-        this.refs[id].innerHTML).then(function(data){
+        text).then(function(data){
             console.log(data);
         })
     }
@@ -55,50 +57,52 @@ export default class DayThing extends React.Component
         if(this.props.action=="ADD_DAYTHING")
         {
             var focusElement = this.props.data[this.props.data.length-1]._id;
-            (focusElement);
             this.refs[focusElement].focus();
         }
+        this.props.data.map(function(item , index){
+          autosize($("#" + item._id))
+        })
     }
     dragenter(ev)
     {
         if(ev.target.id!=="")
         {
-
             this.temp.targetid =ev.target.id.replace("-item" , "");
             this.temp.targetid = this.temp.targetid.replace("-isfinish" , "");
-            var a = document.querySelector("#"+this.temp.targetid + "-item");
-            var className = a.getAttribute("class")
-            a.setAttribute("class" , className + " in-drag ");
+            $("#"+this.temp.targetid + "-item").addClass("in-drag");
         }
     }
     dragleave(ev)
     {
-        if(ev.target.id.match("-item").length>0)
-        {
-            var a = document.querySelector("#"+ev.target.id);
-            var className = a.getAttribute("class")
-            a.setAttribute("class" , className.replace(/in-drag/g , ""));
-        }
+      if(ev.target.id!=="")
+      {
+              var removeClassId =ev.target.id.replace("-item" , "");
+              removeClassId= removeClassId.replace("-isfinish" , "");
+
+              $("#"+removeClassId + "-item").removeClass("in-drag");
+
+      }
     }
     allowDrop(ev)
      {
         ev.preventDefault();
         ev.dataTransfer.dropEffect = 'move';
+        
+        if(ev.target.id!=="")
+        {
+            this.temp.targetid =ev.target.id.replace("-item" , "");
+            this.temp.targetid = this.temp.targetid.replace("-isfinish" , "");
+            $("#"+this.temp.targetid + "-item").addClass("in-drag");
+        }
      }
      drag(ev)
      {
        ev.dataTransfer.effectAllowed = 'move';
        this.temp.dragid = ev.target.id.replace("-item" , "");
-
-
      }
      itemDrop(ev)
      {  
-       console.log(this.temp);
-            var a = document.querySelector("#"+this.temp.targetid + "-item");
-            var className = a.getAttribute("class")
-            console.log(className)
-            a.setAttribute("class" , className.replace(/in-drag/g , ""));
+       $("#"+this.temp.targetid + "-item").removeClass("in-drag");
        this.props.dragSortDayThing(this.temp.dragid , this.temp.targetid);
        
        var ids = _.map(this.props.data, '_id');
@@ -116,10 +120,6 @@ export default class DayThing extends React.Component
         this.props.delDayThingAsync(this.thingDate , id).then(function(data){
            this.props.delDayThing(id);
         }.bind(this))
-     }
-     createMarkup(thing)
-     {
-       return {__html: thing};
      }
     render() {
       return(
@@ -145,7 +145,7 @@ export default class DayThing extends React.Component
                                 <DayThingIsFinish id ={item._id+ this.props.componentName.isFinish}  ref={item._id+ this.props.componentName.isFinish}  type="checkbox" defaultChecked={item.isFinish} onChange={this.updateThingDB.bind(this)} />
                                 <DayThingIsFinishMark></DayThingIsFinishMark>
                               </DayThingIsFinishLabel>
-                              <DayThingText id={item._id} ref={item._id} contentEditable="true" suppressContentEditableWarning="true" onInput={this.updateThingDB.bind(this)} dangerouslySetInnerHTML={this.createMarkup(item.thing)}>      
+                              <DayThingText id={item._id} ref={item._id} onChange={this.updateThingDB.bind(this)}  defaultValue = {item.thing}>      
                               </DayThingText>
                             </DayThingItem>
                              )
