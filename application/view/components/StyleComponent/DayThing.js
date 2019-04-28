@@ -49,11 +49,11 @@ export const DayThingBoardEdit = styled.ul
 export const DayThingItem = styled.li
 `
     position:relative;
-    left:5%;
-    width:70%;
+    width:90%;
+    margin:0 auto;
     display:flex;
     padding:18px 0px;
-
+    cursor:move;
     :nth-child(1)
     {
         margin-top:30px;
@@ -74,23 +74,21 @@ export const DayThingIsFinish = styled.input
 `;
 export const DayThingIsFinishMark = styled.span
 `
-    background:#2196F3;
+    background:#fff;
     position: absolute;
-    min-width:18px;
-    height:18px;
-    border-radius:2px;
-
+    min-width:16px;
+    height:16px;
+    border:2px solid #888;
     ::after
     {         
         margin-top:1px;
-        margin-left:5px;
-        background:#2196F3;
+        margin-left:4px;
         content:'';
         width:6px;
-        height:10px;
+        height:9px;
         display:none;
-        border: solid white;
-        border-width: 0 2px 2px 0;
+        border: solid #555;
+        border-width: 0 1.5px 1.5px 0;
         -webkit-transform: rotate(45deg);
         -ms-transform: rotate(45deg);
         transform: rotate(45deg);
@@ -103,9 +101,11 @@ export const DayThingText = styled.textarea
     width: 90%;
     margin-left:34px;
     min-height:16px;
+    padding:0;
     outline:0;
     border:0;
     resize:none;
+    font-size:1em;
     line-height:1.4em;
     color:#555;
 `;
