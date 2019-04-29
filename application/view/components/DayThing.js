@@ -17,13 +17,10 @@ export default class DayThing extends React.Component
     async componentDidMount ()
     {
         
-      //this.thingDate = _.join([this.props.match.params.Year , this.props.match.params.Month , this.props.match.params.Day] , "-");
+      this.thingDate = _.join([this.props.match.params.Year , this.props.match.params.Month , this.props.match.params.Day] , "-");
       var id = await this.props.getDayThingIdAsync(this.thingDate);
       var thing = await this.props.getDayThingAsync(id);
-
       this.props.setDayThing(thing);
-
-
     }
     addThing()
     {
@@ -53,7 +50,6 @@ export default class DayThing extends React.Component
     }
     componentDidUpdate()
     {
-        console.log(this.props.data);
         if(this.props.action=="ADD_DAYTHING")
         {
             var focusElement = this.props.data[this.props.data.length-1]._id;
@@ -69,7 +65,7 @@ export default class DayThing extends React.Component
         {
             this.temp.targetid =ev.target.id.replace("-item" , "");
             this.temp.targetid = this.temp.targetid.replace("-isfinish" , "");
-            $("#"+this.temp.targetid + "-item").addClass("in-drag");
+            $("#"+this.temp.targetid +  this.props.componentName.item).addClass("in-drag");
         }
     }
     dragleave(ev)
@@ -78,9 +74,7 @@ export default class DayThing extends React.Component
       {
               var removeClassId =ev.target.id.replace("-item" , "");
               removeClassId= removeClassId.replace("-isfinish" , "");
-
-              $("#"+removeClassId + "-item").removeClass("in-drag");
-
+              $("#"+removeClassId +  this.props.componentName.item).removeClass("in-drag");
       }
     }
     allowDrop(ev)
@@ -92,7 +86,7 @@ export default class DayThing extends React.Component
         {
             this.temp.targetid =ev.target.id.replace("-item" , "");
             this.temp.targetid = this.temp.targetid.replace("-isfinish" , "");
-            $("#"+this.temp.targetid + "-item").addClass("in-drag");
+            $("#"+this.temp.targetid +  this.props.componentName.item).addClass("in-drag");
         }
      }
      drag(ev)
@@ -102,7 +96,7 @@ export default class DayThing extends React.Component
      }
      itemDrop(ev)
      {  
-       $("#"+this.temp.targetid + "-item").removeClass("in-drag");
+       $("#"+this.temp.targetid +  this.props.componentName.item).removeClass("in-drag");
        this.props.dragSortDayThing(this.temp.dragid , this.temp.targetid);
        
        var ids = _.map(this.props.data, '_id');

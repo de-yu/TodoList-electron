@@ -13,23 +13,49 @@
 使用 Nedb 進行資料庫操作
 
 Nedb 一個使用檔案作為資料庫的工具
-一個檔案代表一個資料庫
+
+一個檔案代表一個資料表
+
 不須額外安裝 mysql oracle 等
 
+
 這之前接觸到 graphql 這個東西
+
 也趁這次機會 好好理解一下
+
 有文章提到說 這是為了解決 restful 帶來的問題
+
 最後使用完 基本的語法雖然懂了
+
 但沒有感覺到 解決什麼特別的問題(感覺像是我自己的問題)
 
+
 也在這一次的製作過程中
+
 將和 React 有關的框架一併使用看看
 
-css - style-component
-路由 - React-router
-資料流 - Redux
-非同步動作 - Redux-think
+## 架構
 
+主要分成:
+
+### models
+
+* models/save 存放資料
+* models/api 提供資料操作方法
+* models/schema GraphQL 設定檔
+* main_graphql  在這裡組合 models/api 提供的方法 給 view 使用
+
+### view
+
+view 使用以下框架完成
+
+* React
+* React-Router
+* Redux
+* style-component
+
+index.js 組合 view 和 路由 
+render 出畫面
 
 ## Getting Started
 
@@ -61,4 +87,5 @@ css - style-component
 * [Redux-thunk](https://github.com/reduxjs/redux-thunk) - 在 Redux 執行非同步動作
 * [styled-components](https://www.styled-components.com/) - 建立 component 並綁定 css
 * [Electron](https://electronjs.org/) - 將網頁打包成應用程式
-
+* [striptags](https://github.com/ericnorris/striptags) - 過濾 html tag
+ 
