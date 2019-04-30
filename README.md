@@ -54,6 +54,21 @@ view 使用以下框架完成
 * Redux
 * style-component
 
+view/components/
+> DayThing - 顯示每日代辦事項 以日期作為參數
+
+> FinishThing - 顯示所有已完成事項
+
+> WaitThing - 顯示所有未完成事項
+
+> NavBar - 上方導覽列
+
+> NavDate - 左側日期連結
+
+> Note - 隨意筆記
+
+> MainRoute - 定義 router 要 render 的 component
+
 index.js 組合 view 和 路由 
 render 出畫面
 
