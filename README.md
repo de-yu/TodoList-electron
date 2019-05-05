@@ -18,7 +18,6 @@ Nedb 一個使用檔案作為資料庫的工具
 
 不須額外安裝 mysql oracle 等
 
-
 這之前接觸到 graphql 這個東西
 
 也趁這次機會 好好理解一下
@@ -27,8 +26,7 @@ Nedb 一個使用檔案作為資料庫的工具
 
 最後使用完 基本的語法雖然懂了
 
-但沒有感覺到 解決什麼特別的問題(感覺像是我自己的問題)
-
+但沒有感覺到 GraphQL 的特別之處
 
 也在這一次的製作過程中
 
@@ -69,7 +67,10 @@ view/components/
 
 > MainRoute - 定義 router 要 render 的 component
 
-index.js 組合 view 和 路由 
+index.js 
+
+組合 view 和 路由 
+
 render 出畫面
 
 ## Getting Started
