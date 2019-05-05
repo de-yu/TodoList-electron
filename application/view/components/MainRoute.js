@@ -21,7 +21,7 @@ export default class MainRoute extends React.Component
       <Route path="/DayThing/:Year/:Month/:Day" render = {(props) => (
             <DayThing key={location.href} {...props} />)
           } />
-      <Route component={DayThing} />
+      <Route component={Note} />
     </Switch>
     );
   }

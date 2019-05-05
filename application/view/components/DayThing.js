@@ -12,7 +12,6 @@ export default class DayThing extends React.Component
   constructor(props) {
         super(props)
         this.temp = {dragid:"" , targetid:"" , targetclass:""};
-        this.thingDate = "2019-03-13";  
     }
     async componentDidMount ()
     {

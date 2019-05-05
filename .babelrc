@@ -1,1 +1,1 @@
-{ "presets": ["@babel/preset-env", "@babel/preset-react"]}
+{ "presets": ["@babel/preset-env", "@babel/preset-react"] ,  "plugins": ["transform-es2015-parameters","transform-es2015-destructuring",] ,  "compact": false}

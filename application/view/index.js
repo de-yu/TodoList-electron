@@ -40,4 +40,4 @@ ReactDOM.render((
       <App />
     </BrowserRouter>
   </Provider>
-), document.getElementById('body'))
+), document.getElementById('body'));

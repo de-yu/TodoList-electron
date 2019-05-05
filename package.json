@@ -18,6 +18,8 @@
         "@babel/preset-react": "7.0.0",
         "@babel/register": "7.0.0",
         "autosize": "^4.0.2",
+        "babel-plugin-transform-es2015-destructuring": "^6.23.0",
+        "babel-plugin-transform-es2015-parameters": "^6.24.1",
         "electron": "3.0.10",
         "electron-packager": "12.2.0",
         "graphql": "14.0.2",
@@ -39,6 +41,6 @@
     },
     "scripts": {
         "electron": "electron main.js",
-        "package": "electron-packager . test --platform=win32 --arch=x64 --version=3.0.10 --overwrite"
+        "package": "electron-packager . TodoList --platform=win32 --arch=x64 --electron-version=3.0.10 --overwrite"
     }
 }
