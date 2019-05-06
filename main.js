@@ -13,4 +13,9 @@ app.on('ready', () => {
 	detach: true,
     });
     
+    mainWindow.on('closed', function () {
+        mainWindow = null;
+        process.exit(0);
+    });
+    
 });

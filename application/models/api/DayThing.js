@@ -1,5 +1,5 @@
 
-var thing = new Nedb({filename: './application/models/save/Thing.db'});
+var thing = new Nedb({filename: __dirname + '/../save/Thing.db'});
 
 export default class DayThing{
     static getThing ({id})
