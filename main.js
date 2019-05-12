@@ -9,9 +9,9 @@ app.on('ready', () => {
     // 讀取主要的html
     mainWindow.loadURL( path.join('file://', __dirname, 'index.html'));
     // 開啟debug tool
-    mainWindow.webContents.openDevTools({
+    /*mainWindow.webContents.openDevTools({
 	detach: true,
-    });
+    });*/
     
     mainWindow.on('closed', function () {
         mainWindow = null;

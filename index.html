@@ -17,11 +17,11 @@ and open the template in the editor.
     <div id="body"></div>
   </body>
   <script>
-    require('babel-register');
+require('@babel/register');
 require("@babel/polyfill");
 
 var _ = require('lodash');
 var Nedb = require('nedb');
-require("./application/view/index.js");
+require( "./application-babel/view/index.js");
    </script>
 </html>

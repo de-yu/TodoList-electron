@@ -1,6 +1,4 @@
 
-'use babel';
-
 import { BrowserRouter, Route , Link , Switch , HashRouter} from 'react-router-dom'
 import { matchPath } from 'react-router'
 import React from 'react';

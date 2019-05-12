@@ -3,8 +3,7 @@ import React from 'react';
 import {Main} from './StyleComponent/Main'
 import {BoardHeader, Header, Content, ContentBlock, Date, DateNum, ThingBlock,ThingMarker , ThingItem, Thing , Footer} from './StyleComponent/FinishThing'
 import {WaitBoard} from './StyleComponent/WaitThing'
-
-import ql from "./../../../application/models/main_graphql"
+import ql from "./../../models/main_graphql"
 
 export default class WaitThing extends React.Component
 {

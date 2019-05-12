@@ -2,7 +2,7 @@
 
 /* global _ */
 
-const reducer = (state = {date:{}}, action) => {
+const reducer = (state = {date:[]}, action) => {
 
     switch (action.type) {
         case 'setDate':

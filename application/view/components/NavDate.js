@@ -3,7 +3,6 @@
 
 import React from 'react';
 import {NavCalendar, Calendar, Year, YearNum, Month, AllMonth, MonthNum, Num, MonthDays, Day, DayLink, DateControl, DateInput, NewDateButton, DelDateButton} from './StyleComponent/NavDate'
-import ql from "./../../../application/models/main_graphql"
 
 export default class NavDate extends React.PureComponent {
     constructor (props){

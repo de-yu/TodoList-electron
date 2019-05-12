@@ -1,4 +1,4 @@
-import ql from "./../../../application/models/main_graphql"
+import ql from "./../../models/main_graphql"
 
 const setDate = (data) => ({
     type: 'setDate',

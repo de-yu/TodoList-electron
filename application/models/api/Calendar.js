@@ -1,5 +1,5 @@
 
-var CalendarCon =  new Nedb({filename: __dirname +'/../save/DayThing.db'});
+var CalendarCon =  new Nedb({filename: './save/DayThing.db'});
 
 export default class Calendar
 {

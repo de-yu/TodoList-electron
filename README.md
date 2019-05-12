@@ -77,15 +77,19 @@ render 出畫面
 
         npm install
 
-## Running the tests
+## Running
 
 啟動
         
         npm run electron
 
-打包
+Babel 編譯
 
-        npm run package
+         npm run babel
+
+打包於 dist
+
+        npm run builder
 
 
 ## 執行畫面

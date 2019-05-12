@@ -1,5 +1,5 @@
 
-var NoteCon = new Nedb({filename: __dirname + '/../save/Note.db'});
+var NoteCon = new Nedb({filename: './save/Note.db'});
 
 export default class Note{
     constructor (){

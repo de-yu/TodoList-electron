@@ -3,7 +3,7 @@ import React from 'react';
 import {Main} from './StyleComponent/Main'
 import {FinishBoard, BoardHeader, Header, Content, ContentBlock, Date, DateNum, ThingBlock,ThingMarker , ThingItem, Thing , Footer} from './StyleComponent/FinishThing'
 
-import ql from "./../../../application/models/main_graphql"
+import ql from "./../../models/main_graphql"
 
 export default class FinishThing extends React.Component{
     constructor (props){
