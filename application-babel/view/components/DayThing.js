@@ -99,6 +99,13 @@ function (_React$Component) {
       return componentDidMount;
     }()
   }, {
+    key: "updateThingProps",
+    value: function updateThingProps() {
+      this.props.data.forEach(function (item, key) {
+        this.props.updateDayThing(item._id, this.refs[item._id + this.props.componentName.isFinish].checked, this.refs[item._id].value);
+      }.bind(this));
+    }
+  }, {
     key: "addThing",
     value: function addThing() {
       this.updateThingProps();
@@ -107,17 +114,11 @@ function (_React$Component) {
       }.bind(this));
     }
   }, {
-    key: "updateThingProps",
-    value: function updateThingProps() {
-      this.props.data.forEach(function (item, key) {
-        this.props.updateDayThing(item._id, this.refs[item._id + this.props.componentName.isFinish].checked, this.refs[item._id].innerHTML);
-      }.bind(this));
-    }
-  }, {
     key: "updateThingDB",
     value: function updateThingDB(event) {
       var id = event.target.id.split("-")[0];
       var text = (0, _striptags.default)(this.refs[id].value);
+      this.updateThingProps();
       this.props.updateDayThingAsync(id, this.refs[id + this.props.componentName.isFinish].checked, text).then(function (data) {
         console.log(data);
       });
@@ -195,6 +196,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      console.log(this.props.data);
       return _react.default.createElement(_Main.Main, null, _react.default.createElement(_DayThing.DayThingBoard, null, _react.default.createElement(_DayThing.DayThingBoardTop, null, _react.default.createElement(_DayThing.DayThingAdd, {
         onClick: this.addThing.bind(this)
       }, "NEW"), _react.default.createElement(_DayThing.DayThingDel, {
@@ -202,6 +204,7 @@ function (_React$Component) {
         onDragOver: this.allowDrop.bind(this),
         title: "\u62D6\u66F3\u4E8B\u9805\u522A\u9664"
       }, "DEL")), _react.default.createElement(_DayThing.DayThingBoardEdit, null, this.props.data.map(function (item, index) {
+        console.log(item);
         return _react.default.createElement(_DayThing.DayThingItem, {
           id: item._id + this.props.componentName.item,
           key: item._id + this.props.componentName.item,

@@ -21,31 +21,32 @@ export default class DayThing extends React.Component
       var thing = await this.props.getDayThingAsync(id);
       this.props.setDayThing(thing);
     }
-    addThing()
-    {
-                
-        this.updateThingProps();
-        this.props.addDayThingAsync(this.thingDate).then(function (newdoc){
-            this.props.addDayThing(newdoc._id);
-        }.bind(this))
-    }
     updateThingProps()
     {
         this.props.data.forEach(function(item , key){
             this.props.updateDayThing(item._id ,
             this.refs[item._id + this.props.componentName.isFinish].checked,
-            this.refs[item._id].innerHTML);       
+            this.refs[item._id].value);       
+        }.bind(this))
+    }
+    addThing()
+    {              
+        this.updateThingProps();
+        this.props.addDayThingAsync(this.thingDate).then(function (newdoc){
+            this.props.addDayThing(newdoc._id);
         }.bind(this))
     }
     updateThingDB(event)
     {  
         var id = event.target.id.split("-")[0];
         var text = striptags(this.refs[id].value);
+        this.updateThingProps();
         this.props.updateDayThingAsync(id ,
         this.refs[id + this.props.componentName.isFinish].checked,
         text).then(function(data){
             console.log(data);
         })
+
     }
     componentDidUpdate()
     {
@@ -54,9 +55,9 @@ export default class DayThing extends React.Component
             var focusElement = this.props.data[this.props.data.length-1]._id;
             this.refs[focusElement].focus();
         }
-        this.props.data.map(function(item , index){
+       this.props.data.map(function(item , index){
           autosize($("#" + item._id))
-        })
+        });
     }
     dragenter(ev)
     {
@@ -115,6 +116,7 @@ export default class DayThing extends React.Component
         }.bind(this))
      }
     render() {
+                              console.log( this.props.data)
       return(
               <Main>
                   <DayThingBoard>
@@ -129,8 +131,9 @@ export default class DayThing extends React.Component
 
                       <DayThingBoardEdit>
                       {
-                        this.props.data.map(function(item , index){
 
+                        this.props.data.map(function(item , index){
+                            console.log(item);
                           return (
                              <DayThingItem id={item._id+ this.props.componentName.item} key={item._id+ this.props.componentName.item} 
                                 draggable="true" onDragStart={this.drag.bind(this)} onDragEnter={this.dragenter.bind(this)} onDrop={this.itemDrop.bind(this)} onDragOver={this.allowDrop.bind(this) } onDragLeave = {this.dragleave.bind(this)} omDragEnd={this.dragleave.bind(this)}> 
