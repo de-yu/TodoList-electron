@@ -1,4 +1,4 @@
-
+var _ = require('lodash');
 
  const reducer = (state ={data:[] , action:""}, action) => {
      

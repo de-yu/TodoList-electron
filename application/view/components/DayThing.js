@@ -1,6 +1,5 @@
 
-/* global _ */
-
+var _ = require('lodash');
 import React from 'react';
 import {Main} from './StyleComponent/Main'
 import {DayThingBoard , DayThingBoardTop, DayThingAdd , DayThingDel , DayThingBoardEdit , DayThingItem ,DayThingIsFinishLabel, DayThingIsFinish , DayThingIsFinishMark , DayThingText} from './StyleComponent/DayThing'
@@ -91,7 +90,6 @@ export default class DayThing extends React.Component
      }
      drag(ev)
      {
-       ev.dataTransfer.effectAllowed = 'move';
        this.temp.dragid = ev.target.id.replace("-item" , "");
      }
      itemDrop(ev)

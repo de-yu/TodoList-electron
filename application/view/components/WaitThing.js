@@ -1,4 +1,5 @@
 
+var _ = require('lodash');
 import React from 'react';
 import {Main} from './StyleComponent/Main'
 import {BoardHeader, Header, Content, ContentBlock, Date, DateNum, ThingBlock,ThingMarker , ThingItem, Thing , Footer} from './StyleComponent/FinishThing'

@@ -13,7 +13,6 @@
     "contributors": [],
     "dependencies": {
         "@babel/cli": "^7.2.0",
-        "@babel/core": "^7.2.0",
         "@babel/polyfill": "^7.2.5",
         "@babel/preset-env": "7.2.0",
         "@babel/preset-react": "7.0.0",
@@ -32,9 +31,14 @@
         "redux": "3.7.2",
         "redux-thunk": "^2.3.0",
         "striptags": "^3.1.1",
-        "styled-components": "^4.1.3"
+        "styled-components": "^4.1.3",
+        "webpack": "^4.32.2",
+        "webpack-cli": "^3.3.2",
+        "webpack-dev-server": "^3.5.0"
     },
     "devDependencies": {
+        "@babel/core": "^7.2.0",
+        "babel-loader": "^8.0.6",
         "electron": "3.0.10",
         "electron-builder": "^20.39.0"
     },
@@ -50,6 +54,8 @@
     "scripts": {
         "electron": "electron main.js",
         "builder": "electron-builder --win --x64",
-        "babel": "./node_modules/.bin/babel application --out-dir application-babel"
+        "babel": "./node_modules/.bin/babel application --out-dir application-babel",
+        "webpack-build": "webpack",
+        "webpack -dev": "webpack-dev-server --devtool eval --progress --colors"
     }
 }

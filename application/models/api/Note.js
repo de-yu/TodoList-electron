@@ -1,3 +1,4 @@
+var Nedb = require('nedb');
 
 var NoteCon = new Nedb({filename: './save/Note.db'});
 

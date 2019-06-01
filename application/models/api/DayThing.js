@@ -1,4 +1,5 @@
-
+var Nedb = require('nedb');
+var _ = require('lodash');
 var thing = new Nedb({filename: './save/Thing.db'});
 
 export default class DayThing{

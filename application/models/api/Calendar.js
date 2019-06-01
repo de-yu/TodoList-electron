@@ -1,4 +1,5 @@
-
+var Nedb = require('nedb');
+var _ = require('lodash');
 var CalendarCon =  new Nedb({filename: './save/DayThing.db'});
 
 export default class Calendar

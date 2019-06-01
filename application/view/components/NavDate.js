@@ -1,6 +1,5 @@
 
-/* global _ */
-
+var _ = require('lodash');
 import React from 'react';
 import {NavCalendar, Calendar, Year, YearNum, Month, AllMonth, MonthNum, Num, MonthDays, Day, DayLink, DateControl, DateInput, NewDateButton, DelDateButton} from './StyleComponent/NavDate'
 

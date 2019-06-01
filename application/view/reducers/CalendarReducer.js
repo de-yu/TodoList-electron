@@ -1,6 +1,5 @@
 
-
-/* global _ */
+var _ = require('lodash');
 
 const reducer = (state = {date:[]}, action) => {
 
