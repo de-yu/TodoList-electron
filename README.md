@@ -91,6 +91,33 @@ Babel 編譯
 
         npm run builder
 
+webpack 打包
+    
+        npm run webpack-build
+
+webpack dev  http://localhost:7000
+
+        npm run webpack-dev
+
+## 操作
+
+記事本: 單純儲存文字
+
+待完成: 顯示未打勾的事項
+
+已完成: 顯示已打勾的事項
+
+新增日期: 選好日期按下 new
+
+刪除日期: 拖曳日期至 DEL
+
+新增事項: 選定日期按下 NEW
+
+刪除事項: 拖曳事項至 DEL
+
+## 執行
+
+[web版](https://de-yu.github.io/TodoList-electron/application-webpack/#/) - 使用 webpack 打包 資料存在 localstorage
 
 ## 執行畫面
 
@@ -108,4 +135,6 @@ Babel 編譯
 * [styled-components](https://www.styled-components.com/) - 建立 component 並綁定 css
 * [Electron](https://electronjs.org/) - 將網頁打包成應用程式
 * [striptags](https://github.com/ericnorris/striptags) - 過濾 html tag
+* [webpack](https://webpack.js.org/) - js打包工具
+* [webpack-dev-server](https://github.com/webpack/webpack-dev-server)  - 測試工具
  
