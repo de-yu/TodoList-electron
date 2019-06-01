@@ -89512,7 +89512,7 @@ function (_React$Component) {
   }, {
     key: "drag",
     value: function drag(ev) {
-      ev.dataTransfer.effectAllowed = 'move';
+      ev.dataTransfer.setData('application/node type', this);
       this.temp.dragid = ev.target.id.replace("-item", "");
     }
   }, {

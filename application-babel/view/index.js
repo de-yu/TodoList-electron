@@ -41,4 +41,4 @@ var App = function App() {
 
 _reactDom.default.render(_react.default.createElement(_reactRedux.Provider, {
   store: store
-}, _react.default.createElement(_reactRouterDom.BrowserRouter, null, _react.default.createElement(App, null))), document.getElementById('body'));
+}, _react.default.createElement(_reactRouterDom.HashRouter, null, _react.default.createElement(App, null))), document.getElementById('body'));

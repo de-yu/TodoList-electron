@@ -41,6 +41,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+var _ = require('lodash');
+
 var DayThing =
 /*#__PURE__*/
 function (_React$Component) {
@@ -168,7 +170,6 @@ function (_React$Component) {
   }, {
     key: "drag",
     value: function drag(ev) {
-      ev.dataTransfer.effectAllowed = 'move';
       this.temp.dragid = ev.target.id.replace("-item", "");
     }
   }, {

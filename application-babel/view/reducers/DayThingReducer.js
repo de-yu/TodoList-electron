@@ -5,6 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
+var _ = require('lodash');
+
 var reducer = function reducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
     data: [],

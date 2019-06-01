@@ -90,6 +90,7 @@ export default class DayThing extends React.Component
      }
      drag(ev)
      {
+       ev.dataTransfer.setData('application/node type', this);
        this.temp.dragid = ev.target.id.replace("-item" , "");
      }
      itemDrop(ev)
